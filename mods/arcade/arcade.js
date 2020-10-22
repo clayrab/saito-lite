@@ -80,7 +80,7 @@ class Arcade extends ModTemplate {
     if (i == "watch") {
       let msg = urlParams.get('msg');
       this.observeGame(msg);
-    }   
+    }
 
   }
 
@@ -107,9 +107,9 @@ class Arcade extends ModTemplate {
 	    if (games[i].players[z] == address_to_watch) {
               games[i].observer_mode_player = (z+1);
 	    }
-	  } 
+	  }
           games[i].ts = new Date().getTime();
-          arcade_self.app.keys.addWatchedPublicKey(address_to_watch); 
+          arcade_self.app.keys.addWatchedPublicKey(address_to_watch);
 	  arcade_self.app.options.games = games;
 	  arcade_self.app.storage.saveOptions();
           let slug = arcade_self.app.modules.returnModule(msgobj.module).returnSlug();
@@ -197,7 +197,7 @@ class Arcade extends ModTemplate {
     ArcadeMain.attachEvents(app, data);
 
   }
-  
+
 
   renderInvite(app, data) {
     let inviteBase64 = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
@@ -363,7 +363,7 @@ class Arcade extends ModTemplate {
 
     this.sendPeerDatabaseRequestWithFilter(
 
-      "Arcade" , 
+      "Arcade" ,
 
       `SELECT DISTINCT game_id, module, player, players_array FROM gamestate WHERE (1 = 1 AND last_move > ${current_timestamp} GROUP BY game_id ORDER BY last_move DESC LIMIT 5`,
 
@@ -381,7 +381,7 @@ class Arcade extends ModTemplate {
         }
       }
     );
-   
+
 
   }
 
@@ -461,9 +461,9 @@ class Arcade extends ModTemplate {
       if (tx.transaction.sig == transaction.sig) { return; }
       if (txmsg.game_id != "" && txmsg.game_id == transaction.sig) { return; }
 
-      if (txmsg.game_id === this.games[i].transaction.sig) { 
+      if (txmsg.game_id === this.games[i].transaction.sig) {
 	console.log("ERROR 480394: not re-adding existing game to list");
-	return; 
+	return;
       }
 
     }
@@ -519,7 +519,7 @@ class Arcade extends ModTemplate {
 	i--;
       }
     }
-    
+
     let data = {};
     data.arcade = this;
 
@@ -727,7 +727,7 @@ class Arcade extends ModTemplate {
         if (tx.transaction) {
           if (!tx.transaction.sig) { return; }
           if (tx.msg.over == 1) { return; }
-  
+
           for (let i = 0; i < this.games.length; i++) {
             if (this.games[i].transaction.sig == txmsg.game_id) {
 
@@ -743,8 +743,8 @@ class Arcade extends ModTemplate {
 	      if (number_of_willing_players >= number_of_players_needed) {
 
 	        //
-	        // first player is the only one with a guaranteed consistent order in all 
-	        // browsers -- cannot use last player to join as players may disagree on 
+	        // first player is the only one with a guaranteed consistent order in all
+	        // browsers -- cannot use last player to join as players may disagree on
 		// their order. so the first player is responsible for processing the "accept"
 		//
 	        if (this.games[i].msg.players[0] == this.app.wallet.returnPublicKey()) {
@@ -811,7 +811,7 @@ class Arcade extends ModTemplate {
         //
         // do not process if transaction is not for us
         //
-        if (!tx.isTo(app.wallet.returnPublicKey())) { 
+        if (!tx.isTo(app.wallet.returnPublicKey())) {
 
 /*****
 	  let game_found = false;
@@ -1109,7 +1109,7 @@ class Arcade extends ModTemplate {
               }
             }
           }
-          
+
           this.accepted[game_id]++;
           res.rows.push({ game_still_open: 0 });
         } else {
@@ -1284,9 +1284,9 @@ class Arcade extends ModTemplate {
     }
 
     //
-    // add any move associated with this tx to the 
+    // add any move associated with this tx to the
     // gamestate so that it can be executed to pull
-    // us up-to-date on what happened in preparation 
+    // us up-to-date on what happened in preparation
     // for the next turn / broadcast
     //
     game_state.last_turn = txmsg.turn;
@@ -1862,4 +1862,3 @@ console.log("GAME DOES NOT EXIST!");
 }
 
 module.exports = Arcade;
-

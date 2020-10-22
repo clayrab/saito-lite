@@ -54,20 +54,28 @@ class TutorialWallet extends ModTemplate {
     this.name            = "TutorialWallet";
     this.description     = "A Basic Wallet to demonstrate the basic Saito Module APIs";
     this.categories      = "Tutorials";
-    // this.browser_active  = 1;
+    this.balance         = null;
     return this;
-
   }
 
   onConfirmation(blk, tx, conf, app) {
     console.log("tutWallet onConfirmation")
-    let txmsg = tx.returnMessage();
-    if (conf == 0) {
-      if (txmsg.request == "chat message") {
-        if (tx.transaction.from[0].add == app.wallet.returnPublicKey()) { return; }
-        this.receiveMessage(app, tx);
-      }
-    }
+    // let txmsg = tx.returnMessage();
+    // if (conf == 0) {
+    //   if (txmsg.request == "chat message") {
+    //     if (tx.transaction.from[0].add == app.wallet.returnPublicKey()) { return; }
+    //     this.receiveMessage(app, tx);
+    //   }
+    // }
+
+  }
+
+  initialize(app) {
+    console.log("tutWallet initialize");
+    // console.log("caller is " + arguments.callee.caller.toString());
+    super.initialize(app);
+    this.balance = app.wallet.returnBalance();
+
 
   }
 
@@ -76,23 +84,53 @@ class TutorialWallet extends ModTemplate {
     return null;
   }
 
-  initialize(app) {
-    console.log("tutWallet initialize");
-    // console.log("caller is " + arguments.callee.caller.toString());
-    super.initialize(app);
-  }
 
   initializeHTML(app) {
     console.log("tutWallet initializeHTML");
-    // super.initializeHTML(app);
-    // console.log(document.querySelector("#content .main"));
-    // console.log(document.querySelector(".content"));
-    // console.log(document.querySelector("#content"));
-    console.log(document)
-    console.log(document.querySelector)
-    document.querySelector("#content .main").innerHTML = "<div>Hello World!</div>"
-
+    this.render(app);
   }
+  render(app) {
+    let html = "<div id='helloworld'>Hello World!</div>";
+    if(this.balance) {
+      html += "<div>" + this.balance + "</div>";
+    }
+    document.querySelector("#content .main").innerHTML = html;
+    document.getElementById("helloworld").onclick = (event) => {
+      console.log("click")
+      app.modules.respondTo("send-reward").forEach((mod, i) => {
+        console.log(mod.respondTo("send-reward").makePayout)
+        console.log(app.wallet.returnPublicKey())
+        //mod.respondTo("send-reward").makePayout( app.wallet.returnPublicKey(), 10);
+        mod.makePayout( app.wallet.returnPublicKey(), 10);
+      });
+    };
+  }
+
+  webServer(app, expressapp, express) {
+    console.log("tutWallet webServer");
+    //
+    // if a web directory exists, we make it broswable if server
+    // functionality exists on this machine. the contents of the
+    // web directory will be in a subfolder under the client name
+    //
+    let webdir = `${__dirname}/../../mods/${this.dirname}/web}`;
+    expressapp.get('/gimme', function (req, res) {
+      app.modules.requestInterfaces("send-reward").forEach((itnerface, i) => {
+        itnerface.makePayout(req.query.pubkey, 10);
+        res.type('application/json');
+        res.status(200);
+        res.send({status: "ok"});
+      });
+      return;
+    });
+    let fs = app.storage.returnFileSystem();
+    if (fs != null) {
+      if (!fs.existsSync(webdir)) {
+        expressapp.use('/' + encodeURI(this.returnSlug()), express.static(__dirname + "/../../mods/" + this.dirname + "/web"));
+      }
+    }
+
+  };
   attachEvents(app) {
     console.log("tutWallet attachEvents")
   }
@@ -101,6 +139,9 @@ class TutorialWallet extends ModTemplate {
     console.log("tutWallet installModule")
   }
 
+  updateBalance(app) {
+    console.log("tutWallet updateBalance")
+  }
   // loadFromArchives(app, tx) {
   //   console.log("tutWallet loadFromArchives")
   // }
@@ -137,9 +178,6 @@ class TutorialWallet extends ModTemplate {
   // // webServer(app, expressapp, express) {
   // //   console.log("tutWallet webServer")
   // // }
-  // updateBalance(app) {
-  //   console.log("tutWallet updateBalance")
-  // }
   // updateIdentifier(app) {
   //   console.log("tutWallet updateIdentifier")
   // }

@@ -19,7 +19,7 @@ class Rewards extends ModTemplate {
 
     this.initial = 10;
     this.payoutRatio = 0.75;
-    this.rewards_publickey = "zYCCXRZt2DyPD9UmxRfwFgLTNAqCd5VE8RuNneg4aNMK";
+    this.rewards_publickey = "24HtnCdWRQSrSXj6yuk5e6Q6sDTWGojRcMUg9kmunt3an";
 
 
     this.backupPayout = 50;
@@ -67,6 +67,12 @@ class Rewards extends ModTemplate {
     return null;
   }
 
+  requestInterface(type) {
+    if (type == 'send-reward') {
+      return {makePayout: this.makePayout.bind(this)};
+    }
+    return null;
+  }
 
   async onPeerHandshakeComplete(app, peer) {
 
@@ -116,7 +122,7 @@ class Rewards extends ModTemplate {
     }
   }
 
-  //              app.network.sendRequestWithCallback("get achievements", app.wallet.returnPublicKey(), 
+  //              app.network.sendRequestWithCallback("get achievements", app.wallet.returnPublicKey(),
 
 
   renderAchievmentRow(row) {
@@ -262,11 +268,11 @@ class Rewards extends ModTemplate {
         $payout_amt: payout,
       }
       let sql = `UPDATE users SET last_payout_ts = $payout_ts, total_payout = total_payout + $payout_amt WHERE address = $address`;
-  
+
       await this.app.storage.executeDatabase(sql, params, "rewards");
     }
     this.recordEvent(address, event);
- 
+
   }
 
   async onConfirmation(blk, tx, conf, app) {
@@ -282,7 +288,7 @@ class Rewards extends ModTemplate {
       this.renderBadges();
     }
 
-    if (app.wallet.returnPublicKey() != this.rewards_publickey) { return; } 
+    if (app.wallet.returnPublicKey() != this.rewards_publickey) { return; }
 
     if (conf == 0) {
       if (tx.transaction.type == 0) {
@@ -503,7 +509,7 @@ class Rewards extends ModTemplate {
       console.error(err);
     }
   }
-  
+
   async checkEvent(address, event) {
     let sql = "SELECT * FROM events where address = $address and $event = event";
     let params = {
@@ -541,7 +547,7 @@ class Rewards extends ModTemplate {
   }
 
   makePayout(address, amount, event = "") {
-
+    console.log("makePayout")
     if (this.app.wallet.returnPublicKey() != this.rewards_publickey) { return; }
 
     //send the user a little something.
