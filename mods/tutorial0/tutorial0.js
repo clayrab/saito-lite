@@ -15,7 +15,7 @@ class Tutorial0 extends ModTemplate {
     this.name            = "Tutorial0";
     this.description     = "Hello World!";
     this.categories      = "Tutorials";
-    // 
+    //
     this.default_html = 1;
     return this;
   }

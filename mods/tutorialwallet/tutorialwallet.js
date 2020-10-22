@@ -72,11 +72,8 @@ class TutorialWallet extends ModTemplate {
 
   initialize(app) {
     console.log("tutWallet initialize");
-    // console.log("caller is " + arguments.callee.caller.toString());
     super.initialize(app);
     this.balance = app.wallet.returnBalance();
-
-
   }
 
   respondTo(type) {
@@ -84,26 +81,33 @@ class TutorialWallet extends ModTemplate {
     return null;
   }
 
-
   initializeHTML(app) {
     console.log("tutWallet initializeHTML");
     this.render(app);
   }
+
   render(app) {
+    console.log("tutwallet render")
     let html = "<div id='helloworld'>Hello World!</div>";
     if(this.balance) {
       html += "<div>" + this.balance + "</div>";
     }
     document.querySelector("#content .main").innerHTML = html;
     document.getElementById("helloworld").onclick = (event) => {
-      console.log("click")
-      app.modules.respondTo("send-reward").forEach((mod, i) => {
-        console.log(mod.respondTo("send-reward").makePayout)
-        console.log(app.wallet.returnPublicKey())
-        //mod.respondTo("send-reward").makePayout( app.wallet.returnPublicKey(), 10);
-        mod.makePayout( app.wallet.returnPublicKey(), 10);
-      });
+       fetch(`/gimme?pubkey=${app.wallet.returnPublicKey()}`).then(response => {
+         console.log(response);
+       }).catch((err) => {
+         console.log(err)
+       });
     };
+  }
+
+  updateBalance(app) {
+    console.log("update balance...")
+    if(app.BROWSER) {
+      this.balance = app.wallet.returnBalance();
+      this.render(app);
+    }
   }
 
   webServer(app, expressapp, express) {
@@ -126,9 +130,6 @@ class TutorialWallet extends ModTemplate {
     console.log("tutWallet installModule")
   }
 
-  updateBalance(app) {
-    console.log("tutWallet updateBalance")
-  }
   // loadFromArchives(app, tx) {
   //   console.log("tutWallet loadFromArchives")
   // }

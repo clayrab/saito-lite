@@ -222,7 +222,7 @@ class Arcade extends ModTemplate {
 
 
   initialize(app) {
-
+    console.log("arcade initialize")
     super.initialize(app);
     let { modules } = this.app;
 
@@ -279,7 +279,7 @@ class Arcade extends ModTemplate {
 
 
   initializeHTML(app) {
-
+console.log("arcade initializeHTML")
     let data = {};
     data.arcade = this;
 

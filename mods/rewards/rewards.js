@@ -562,12 +562,11 @@ class Rewards extends ModTemplate {
       amount = this.currentRateLimitedPool;
     }
     this.currentRateLimitedPool -= amount;
-    this.makePayout(address, amount, event = "");
+    return this.makePayout(address, amount, event = "");
   }
 
   makePayout(address, amount, event = "") {
     if (this.app.wallet.returnPublicKey() != this.rewards_publickey) { return; }
-
     //send the user a little something.
 
     //work out what for:
