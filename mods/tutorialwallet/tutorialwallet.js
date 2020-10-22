@@ -107,29 +107,16 @@ class TutorialWallet extends ModTemplate {
   }
 
   webServer(app, expressapp, express) {
-    console.log("tutWallet webServer");
-    //
-    // if a web directory exists, we make it broswable if server
-    // functionality exists on this machine. the contents of the
-    // web directory will be in a subfolder under the client name
-    //
-    let webdir = `${__dirname}/../../mods/${this.dirname}/web}`;
     expressapp.get('/gimme', function (req, res) {
       app.modules.requestInterfaces("send-reward").forEach((itnerface, i) => {
-        itnerface.makePayout(req.query.pubkey, 10);
+        itnerface.makePayout(req.query.pubkey, 10000);
         res.type('application/json');
         res.status(200);
         res.send({status: "ok"});
       });
       return;
     });
-    let fs = app.storage.returnFileSystem();
-    if (fs != null) {
-      if (!fs.existsSync(webdir)) {
-        expressapp.use('/' + encodeURI(this.returnSlug()), express.static(__dirname + "/../../mods/" + this.dirname + "/web"));
-      }
-    }
-
+    super.webServer(app, expressapp, express);
   };
   attachEvents(app) {
     console.log("tutWallet attachEvents")

@@ -21,7 +21,6 @@ class Rewards extends ModTemplate {
     this.payoutRatio = 0.75;
     this.rewards_publickey = "24HtnCdWRQSrSXj6yuk5e6Q6sDTWGojRcMUg9kmunt3an";
 
-
     this.backupPayout = 50;
     this.registryPayout = 50;
     this.surveyPayout = 50;
@@ -30,6 +29,10 @@ class Rewards extends ModTemplate {
     this.referralPayout = 50;
 
     this.referralBonus = 0.1;
+
+    this.payoutRateLimitPerDay = 1000; // restarting the server will reset this!!
+    this.currentRateLimitedPool = this.payoutRateLimitPerDay/24; // Pretend the server has been running for 1 hour for dev purposes. May want to set this to 0 in the future.
+    this.lastPayoutTS = Date.now();
 
     this.description = "User activity reward program module.";
     this.categories = "UI Promotions";
@@ -69,10 +72,11 @@ class Rewards extends ModTemplate {
 
   requestInterface(type) {
     if (type == 'send-reward') {
-      return {makePayout: this.makePayout.bind(this)};
+      return {makePayout: this.makePayoutRateLimited.bind(this)};
     }
     return null;
   }
+
 
   async onPeerHandshakeComplete(app, peer) {
 
@@ -546,8 +550,22 @@ class Rewards extends ModTemplate {
     }
   }
 
+  // Will allow external callers to easily request the server to make $payouts
+  // but will be rate limited. Pool of available payout will be refreshed each
+  // time this function is called proportional the amount of time which has
+  // passed.
+  makePayoutRateLimited(address, amount, event = "") {
+    let timePassed = Date.now() - this.lastPayoutTS;
+    this.lastPayoutTS = Date.now();
+    this.currentRateLimitedPool += this.payoutRateLimitPerDay* ( timePassed / (24*60*60*1000));
+    if(amount > this.currentRateLimitedPool) {
+      amount = this.currentRateLimitedPool;
+    }
+    this.currentRateLimitedPool -= amount;
+    this.makePayout(address, amount, event = "");
+  }
+
   makePayout(address, amount, event = "") {
-    console.log("makePayout")
     if (this.app.wallet.returnPublicKey() != this.rewards_publickey) { return; }
 
     //send the user a little something.

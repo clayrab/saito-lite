@@ -1,32 +1,6 @@
 var ModTemplate = require('../../lib/templates/modtemplate');
 
-class TutorialWallet extends ModTemplate {
-
-//////////////////// MODULE API: //////////////////////////
-//
-// async installModule(app)
-// async initialize(app)
-// initializeHTML(app) }
-// attachEvents(app)
-// loadFromArchives(app, tx)
-// implementsKeys(request)
-// async onConfirmation(blk, tx, confnum, app)
-// onNewBlock(blk, lc)
-// onChainReorganization(block_id, block_hash, lc, pos)
-// onConnectionUnstable(app)
-// onConnectionStable(app)
-// onWalletReset()
-// onPeerHandshakeComplete(app, peer)
-// onConnectionStable(app, peer)
-// onConnectionUnstable(app, peer)
-// shouldAffixCallbackToModule(modname)
-// webServer(app, expressapp, express)
-// updateBalance(app)
-// updateIdentifier(app)
-// updateBlockchainSync(app, current, target)
-// respondTo(request_type = "")
-// receiveEvent(eventname, data)
-// sendEvent(eventname, data)
+class Tutorial0 extends ModTemplate {
 
   constructor(app) {
     super(app);
@@ -38,14 +12,15 @@ class TutorialWallet extends ModTemplate {
     // If any transactions are found which have tx.msg.module = slug, Saito
     // will send these to your module via onConfirmation
     //
-    this.name            = "TutorialWallet";
-    this.description     = "A Basic Wallet to demonstrate the basic Saito Module APIs";
+    this.name            = "Tutorial0";
+    this.description     = "Hello World!";
     this.categories      = "Tutorials";
+    // 
+    this.default_html = 1;
     return this;
   }
 
   initialize(app) {
-    console.log("tutWallet initialize");
     super.initialize(app);
   }
 
@@ -54,4 +29,4 @@ class TutorialWallet extends ModTemplate {
   }
 }
 
-module.exports = TutorialWallet;
+module.exports = Tutorial0;
