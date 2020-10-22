@@ -15,7 +15,7 @@ class Debug extends ModTemplate {
 
     this.description = "A debug configuration dump for Saito";
     this.categories  = "Dev Utilities";
-
+    this.alwaysRun = 1;
     return this;
   }
 
@@ -76,13 +76,13 @@ class Debug extends ModTemplate {
                 filename: 'saito-wallet-' + app.wallet.returnPublicKey() + '.json',
                 content: JSON.stringify(app.options, null, 2)
               };
-      
+
               app.network.sendRequest('send email', message);
 
               salert('Email sent, thank you.');
 
               console.log('Email sent to peer relay');
-      
+
     }
   }
 
@@ -96,5 +96,3 @@ class Debug extends ModTemplate {
 
 
 module.exports = Debug;
-
-

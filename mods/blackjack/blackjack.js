@@ -32,7 +32,7 @@ class Blackjack extends GameTemplate {
     this.updateHTML = "";
 
     this.cardfan = new Cardfan(this.app, this);
-
+    this.alwaysRun = 1;
     return this;
 
   }
@@ -287,13 +287,13 @@ class Blackjack extends GameTemplate {
 
       if (mv[0] === "newround") {
         this.game.queue.splice(qe, 1);
-	this.newRound(); 
+	this.newRound();
 	return 1;
       }
 
       if (mv[0] === "startround") {
         this.game.queue.splice(qe, 1);
-	this.startRound(); 
+	this.startRound();
 	return 1;
       }
 
@@ -347,7 +347,7 @@ class Blackjack extends GameTemplate {
             html += '<li class="menu_option" id="75">75</li>';
             html += '<li class="menu_option" id="100">100</li>';
         html += '</ul>';
-    
+
         this.updateStatus(html, 1);
 
         this.lockInterface();
@@ -545,12 +545,12 @@ console.log("PLAYER "+(i+1)+" gains "+gains);
 	    // send tokens to others
 	    //
 	    if (this.game.player != this.game.state.dealer) {
-              this.game.queue.push("PAY" + "\t" + my_losses + "\t" + this.app.wallet.returnPublicKey() + "\t" + this.game.players[this.game.state.dealer] + "\t" + (new Date().getTime()) + "\t" + "SAITO");	    
+              this.game.queue.push("PAY" + "\t" + my_losses + "\t" + this.app.wallet.returnPublicKey() + "\t" + this.game.players[this.game.state.dealer] + "\t" + (new Date().getTime()) + "\t" + "SAITO");
 	    } else {
 	      for (let i = 0; i < this.game.state.player_winner.length; i++) {
 	  	if (this.game.state.player_winner[i] == 1) {
 	    	  let gains = this.game.state.player_wager[i] * this.game.state.player_payout[i];
-                  this.game.queue.push("PAY" + "\t" + my_losses + "\t" + this.app.wallet.returnPublicKey() + "\t" + this.game.players[i] + "\t" + (new Date().getTime()) + "\t" + "SAITO");	    
+                  this.game.queue.push("PAY" + "\t" + my_losses + "\t" + this.app.wallet.returnPublicKey() + "\t" + this.game.players[i] + "\t" + (new Date().getTime()) + "\t" + "SAITO");
 	  	}
 	      }
 	    }
@@ -599,7 +599,7 @@ console.log("PLAYER "+(i+1)+" gains "+gains);
       html += '<ul>';
       html += '<li class="menu_option" id="bust">confirm</li>';
       html += '</ul>';
-    
+
       this.updateStatus(html, 1);
 
     } else {
@@ -616,7 +616,7 @@ console.log("PLAYER "+(i+1)+" gains "+gains);
       html += '<li class="menu_option" id="hit">hit</li>';
       html += '<li class="menu_option" id="stand">stand</li>';
       html += '</ul>';
-    
+
       this.updateStatus(html, 1);
 
     }
@@ -634,7 +634,7 @@ console.log("PLAYER "+(i+1)+" gains "+gains);
         blackjack_self.addMove("hit\t" + blackjack_self.game.player);
 	if (blackjack_self.game.player == blackjack_self.game.state.dealer) {
 	  blackjack_self.addMove("hand\t"+blackjack_self.game.player+"\t"+JSON.stringify(blackjack_self.game.deck[0].hand));
-	} 
+	}
         blackjack_self.endTurn();
 	return 0;
       }
@@ -644,7 +644,7 @@ console.log("PLAYER "+(i+1)+" gains "+gains);
         blackjack_self.addMove("bust\t" + blackjack_self.game.player);
 	if (blackjack_self.game.player == blackjack_self.game.state.dealer) {
 	  blackjack_self.addMove("hand\t"+blackjack_self.game.player+"\t"+JSON.stringify(blackjack_self.game.deck[0].hand));
-	} 
+	}
         blackjack_self.endTurn();
 	return 0;
       }
@@ -654,7 +654,7 @@ console.log("PLAYER "+(i+1)+" gains "+gains);
         blackjack_self.addMove("stand\t" + blackjack_self.game.player);
 	if (blackjack_self.game.player == blackjack_self.game.state.dealer) {
 	  blackjack_self.addMove("hand\t"+blackjack_self.game.player+"\t"+JSON.stringify(blackjack_self.game.deck[0].hand));
-	} 
+	}
         blackjack_self.endTurn();
 	return 0;
       }
@@ -885,7 +885,7 @@ console.log(i);
 	    newhtml += `
               </div>
               <div class="player-info-name" id="player-info-name-${i + 1}">${this.game.state.player_names[i]}</div>
-              <div class="player-info-chips" id="player-info-chips-${i + 1}">${this.game.state.player_credit[i]} SAITO</div> 
+              <div class="player-info-chips" id="player-info-chips-${i + 1}">${this.game.state.player_credit[i]} SAITO</div>
            `;
 	  }
         }
@@ -898,7 +898,7 @@ console.log("is the player hand shown?");
             <img class="card" src="${this.card_img_dir}/red_back.png">
           </div>
           <div class="player-info-name" id="player-info-name-${i + 1}">${this.game.state.player_names[i]}</div>
-          <div class="player-info-chips" id="player-info-chips-${i + 1}">${this.game.state.player_credit[i]} SAITO</div> 
+          <div class="player-info-chips" id="player-info-chips-${i + 1}">${this.game.state.player_credit[i]} SAITO</div>
         `;
 console.log("this is my hand");
 	  let cardfan_backs = `
@@ -1055,4 +1055,3 @@ console.log("score is: " + total);
 }
 
 module.exports = Blackjack;
-

@@ -21,7 +21,7 @@ class Solitrio extends GameTemplate {
 
     this.description = "Solitaire card game made famous by the good folks at Cathay Pacific Information Technology Services.";
     this.categories  = "Cardgame Game Solitaire";
-
+    this.alwaysRun = 1;
     //
     // this sets the ratio used for determining
     // the size of the original pieces
@@ -49,7 +49,7 @@ class Solitrio extends GameTemplate {
     this.updateStatus("loading game...");
     this.loadGame(game_id);
 
-    //  
+    //
     // workaround to save issues
     //
     this.saveGame();
@@ -223,9 +223,9 @@ console.log(precessor + " --- " + card + " --- " + JSON.stringify(tmparr));
 console.log(this.game.board[precessor].name + " -- " + this.game.board[card].name);
 console.log(precessor_value_num + " -- " + card_value_num);
 
-    if (card_value_num == (precessor_value_num+1)) { 
+    if (card_value_num == (precessor_value_num+1)) {
       if (card_value_suit === precessor_value_suit) {
-        return 1; 
+        return 1;
       }
     }
     return 0;
@@ -333,7 +333,7 @@ console.log("MOVE: " + mv[0]);
         this.game.board['row4_slot10'] = this.game.deck[0].cards[this.game.deck[0].hand[39]];
 
         this.displayBoard();
-  
+
         shd_continue = 0;
       }
       if (mv[0] === "play") {
@@ -353,9 +353,9 @@ console.log("MOVE: " + mv[0]);
       //
       // avoid infinite loops
       //
-      if (shd_continue == 0) { 
+      if (shd_continue == 0) {
         console.log("NOT CONTINUING");
-        return 0; 
+        return 0;
       }
 console.log("... continuing loop");
 
@@ -468,22 +468,22 @@ console.log("... continuing loop");
     let solitrio_self = this;
 
     let html = 'Order cards by suite from 2 to 10. You may randomize the unarranged cards ';
-    if (this.game.state.recycles_remaining == 2) { 
-      html += 'two more times.'; 
+    if (this.game.state.recycles_remaining == 2) {
+      html += 'two more times.';
       $('.chances').text('two chances');
     }
-    if (this.game.state.recycles_remaining == 1) { 
-      html += 'one more time.'; 
+    if (this.game.state.recycles_remaining == 1) {
+      html += 'one more time.';
       $('.chances').text('one chance');
     }
-    if (this.game.state.recycles_remaining == 0) { 
-      html += 'no more times.'; 
+    if (this.game.state.recycles_remaining == 0) {
+      html += 'no more times.';
       $('.chances').text('no chances');
     }
     if (this.game.state.recycles_remaining > 0) {
       html += ' <p></p><div id="recycles_remaining">click here to cycle the board</div>';
     }
-    this.updateStatus(html);        
+    this.updateStatus(html);
 
     $('.logobox').off();
     $('.logobox').on('click', function() {
@@ -620,4 +620,3 @@ console.log("... continuing loop");
 }
 
 module.exports = Solitrio;
-

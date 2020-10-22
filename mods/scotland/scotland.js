@@ -21,7 +21,7 @@ class Scotland extends GameTemplate {
     this.description     = `Scotland Yard is a cat-and-mouse detective game set in London, England. Criminal mastermind Mister X must wind his way through the city while hiding from Scotland Yard.<p></p>The Saito edition of Scotland Yard is modified slightly to improve the balance of gameplay over the traditional version. If played with less than six players, the players controlling the detectives will control multiple detectives to increase the effectiveness of surround-and-capture strategies.`;
     this.type       	 = "strategy boardgame";
     this.categories      = "Games Arcade Entertainment";
-
+    this.alwaysRun = 1;
     //
     // this sets the ratio used for determining
     // the size of the original pieces
@@ -95,9 +95,9 @@ class Scotland extends GameTemplate {
       obj.title = "Scotland Yard";
       return obj;
     }
-   
+
     return null;
- 
+
   }
 
 
@@ -150,7 +150,7 @@ class Scotland extends GameTemplate {
   initializeGame(game_id) {
 
     if (this.game.status != "") {
-      this.updateStatus(this.game.status); 
+      this.updateStatus(this.game.status);
     }
 
     //
@@ -178,7 +178,7 @@ class Scotland extends GameTemplate {
       // to publish location info, while keeping keys
       // secret when making moves.
       //
-      this.addDeck(0); 
+      this.addDeck(0);
 
       this.game.queue.push("round");
       this.game.queue.push("init");
@@ -465,7 +465,7 @@ class Scotland extends GameTemplate {
 	  } else {
 	    this.updateStatus("Mister X escapes!");
 	  }
-	  
+
 	  return 0;
 	}
 
@@ -820,7 +820,7 @@ class Scotland extends GameTemplate {
       html += 'You are a Detective!<p style="margin-bottom:20px"><p>';
     }
 
-    if (this.game.state.round > 1 && player == this.game.state.x) { 
+    if (this.game.state.round > 1 && player == this.game.state.x) {
       html += 'You are at Location '+this.game.deck[0].keys[this.game.deck[0].keys.length-1].location + '.<p style="margin-bottom:20px"></p>';
     } else {
       html += 'You are at Location '+this.game.state.player_location[player-1]+'.<p style="margin-bottom:20px"></p>';
@@ -834,22 +834,22 @@ class Scotland extends GameTemplate {
     }
     if (this.game.state.tickets[player-1]['bus'] > 0) {
       if (comma == 1) { html += ', '; }
-      html += this.game.state.tickets[player-1]['bus'] + " bus rides";      
+      html += this.game.state.tickets[player-1]['bus'] + " bus rides";
       comma = 1;
     }
     if (this.game.state.tickets[player-1]['underground'] > 0) {
       if (comma == 1) { html += ', '; }
-      html += this.game.state.tickets[player-1]['underground'] + " subway rides";      
+      html += this.game.state.tickets[player-1]['underground'] + " subway rides";
       comma = 1;
     }
     if (this.game.state.tickets[player-1]['x'] > 0) {
       if (comma == 1) { html += ', '; }
-      html += this.game.state.tickets[player-1]['x'] + " ferry or mystery rides";      
+      html += this.game.state.tickets[player-1]['x'] + " ferry or mystery rides";
       comma = 1;
     }
     if (this.game.state.tickets[player-1]['double'] > 0 && this.game.state.double_in_action == 0) {
       if (comma == 1) { html += ', and '; }
-      html += this.game.state.tickets[player-1]['double'] + " <span class='double' style='display:inline; cursor:pointer; border-bottom: 1px dashed #444'>double moves</span>";      
+      html += this.game.state.tickets[player-1]['double'] + " <span class='double' style='display:inline; cursor:pointer; border-bottom: 1px dashed #444'>double moves</span>";
       comma = 1;
     }
     html += '.';
@@ -939,7 +939,7 @@ console.log("success...");
   movePlayer(player, source_id, target_id, ticket) {
 
     //
-    // 
+    //
     //
     this.removeEventsFromBoard();
 
@@ -959,8 +959,8 @@ console.log("GAME IS OVER");
 	      return 0;
 	    }
    	  }
-        } 
-      } 
+        }
+      }
     }
 
     //
@@ -989,7 +989,7 @@ console.log("move player 2");
 console.log("move player 3");
     this.addMove("move\t"+player+"\t"+source_id+"\t"+target_id+"\t"+ticket);
     this.endTurn();
-    
+
   }
 
 
@@ -1047,7 +1047,7 @@ console.log("move player 3");
 
     }
   }
- 
+
 
 
 
@@ -1306,4 +1306,3 @@ console.log("move player 3");
 }
 
 module.exports = Scotland;
-

@@ -13,7 +13,7 @@ class Archive extends ModTemplate {
 
     this.description = "A tool for storing transactions for asynchronous retreival.";
     this.categories  = "Utilities";
-
+    this.alwaysRun = 1;
   }
 
 
@@ -87,7 +87,7 @@ class Archive extends ModTemplate {
     let sql = "";
     let params = {};
 
-    for (let i = 0; i < tx.transaction.to.length; i++) {    
+    for (let i = 0; i < tx.transaction.to.length; i++) {
       sql = "INSERT OR IGNORE INTO txs (sig, publickey, tx, ts, type) VALUES ($sig, $publickey, $tx, $ts, $type)";
       params = {
         $sig		:	tx.transaction.sig ,
@@ -220,4 +220,3 @@ class Archive extends ModTemplate {
 
 
 module.exports = Archive;
-

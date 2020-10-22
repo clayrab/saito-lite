@@ -19,7 +19,7 @@ class Wordblocks extends GameTemplate {
     this.name = "Wordblocks";
     this.description = `Wordblocks is a word game in which two to four players score points by placing tiles bearing a single letter onto a board divided into a 15×15 grid of squares. The tiles must form words that, in crossword fashion, read left to right in rows or downward in columns, and be included in a standard dictionary or lexicon.`;
     this.categories = "Game Arcade Entertainment";
-
+    this.alwaysRun = 1;
     //
     // Game Class VARS
     //
@@ -140,7 +140,7 @@ class Wordblocks extends GameTemplate {
     //console.log("\n\n\nDOWNLOADED WORDLIST: " + JSON.stringify(this.wordlist));
 
     //
-    // deal cards 
+    // deal cards
     //
     if (this.game.deck.length == 0 && this.game.step.game == 1) {
 
@@ -396,7 +396,7 @@ class Wordblocks extends GameTemplate {
 
     if (this.game.score == undefined) {
       this.game.score = [];
- 
+
       for (let i = 0; i < players; i++) {
         this.game.score[i] = 0;
       }
@@ -589,7 +589,7 @@ class Wordblocks extends GameTemplate {
               );
               wordblocks_self.addEventsToBoard();
             } else {
-              wordblocks_self.setBoard(word, orientation, x, y); 
+              wordblocks_self.setBoard(word, orientation, x, y);
 
 	      //
               // place word on board
@@ -846,7 +846,7 @@ class Wordblocks extends GameTemplate {
       let boardslot = "";
       let divname = "";
       let letter = word[i].toUpperCase();
-  
+
       if (orientation == "horizontal") {
         boardslot = y + "_" + (x + i);
       }
@@ -1134,7 +1134,7 @@ class Wordblocks extends GameTemplate {
       score *= word_bonus;
 
       //
-      // now score vertical words 
+      // now score vertical words
       //
 
       for (let i = x; i < x + word.length; i++) {
@@ -1347,7 +1347,7 @@ class Wordblocks extends GameTemplate {
       score *= word_bonus;
 
       //
-      // now score horizontal words 
+      // now score horizontal words
       //
 
       for (let i = y; i < y + word.length; i++) {

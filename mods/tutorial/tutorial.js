@@ -30,12 +30,9 @@ class Tutorial extends ModTemplate {
 
     this.app = app;
     this.name = "Tutorial";
-    this.description = "Adds easy-to-use modal popups to the Saito system to help users get started creating accounts and earning tokens";
-    this.categories = "Core Dev Utilities";
 
     this.description = "User introduction and help system.";
     this.categories = "UX Users";
-
 
     this.username_registered = 0;
 
@@ -66,7 +63,7 @@ class Tutorial extends ModTemplate {
     //
     // run on load (or dom ready)
     //
-    // 20201006 - added balance check so does not pop up 
+    // 20201006 - added balance check so does not pop up
     // on first load
     if (!localStorage.getItem('visited')) {
       if (this.app.wallet.wallet.balance > 5) {
@@ -275,4 +272,3 @@ class Tutorial extends ModTemplate {
 }
 
 module.exports = Tutorial;
-

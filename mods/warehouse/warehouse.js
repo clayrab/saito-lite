@@ -7,6 +7,7 @@ class Warehouse extends ModTemplate {
     this.name = "Warehouse";
     this.description = "Block data warehouse for the Saito blockchain. Not suitable for lite-clients";
     this.categories = "Utilities Dev";
+    this.alwaysRun = 1;
   }
 
   onConfirmation(blk, tx, conf, app) {
@@ -27,13 +28,13 @@ class Warehouse extends ModTemplate {
           for (let ii = 0; ii < blk.transactions[i].transaction.to.length; ii++) {
             if (blk.transactions[i].transaction.to[ii].type >= -999) {
               let sql = `INSERT OR IGNORE INTO transactions (
-                                address, 
-                                amt, 
-                                bid, 
-                                tid, 
-                                sid, 
-                                bhash, 
-                                lc, 
+                                address,
+                                amt,
+                                bid,
+                                tid,
+                                sid,
+                                bhash,
+                                lc,
                                 rebroadcast,
                                 sig,
                                 ts,
@@ -45,13 +46,13 @@ class Warehouse extends ModTemplate {
                                 module
                                 )
                              VALUES (
-                                $address, 
-                                $amt, 
-                                $bid, 
-                                $tid, 
-                                $sid, 
-                                $bhash, 
-                                $lc, 
+                                $address,
+                                $amt,
+                                $bid,
+                                $tid,
+                                $sid,
+                                $bhash,
+                                $lc,
                                 $rebroadcast,
                                 $sig,
                                 $ts,

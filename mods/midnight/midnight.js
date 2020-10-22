@@ -15,7 +15,7 @@ class Midnight extends GameTemplate {
     this.slug            = "midnight";
     this.description     = "Experimental Interactive Fiction demo";
     this.categories      = "Arcade Games Entertainment";
-
+    this.alwaysRun = 1;
     this.maxPlayers      = 1;
     this.minPlayers      = 1;
     this.type            = "Fiction";
@@ -31,7 +31,7 @@ class Midnight extends GameTemplate {
 
     if (this.game.status != "") { this.updateStatus(this.game.status); }
 
-    this.initializeDice(); 
+    this.initializeDice();
 
     this.updateStatus("Generating the Game");
     this.game.queue.push("page\t1");
@@ -317,7 +317,7 @@ book['11'] = {
     command : "page\t192",
   },
       ],
-    };  
+    };
 
   book['13'] = {
       text   :"Very slowly, you reach for the key. The scorpion doesn’t move as you take it. Breathing a sigh of relief , you turn the key in the lock and the great iron door swings open.",
@@ -327,7 +327,7 @@ book['11'] = {
     command : "page\t79",
   },
       ],
-    };  
+    };
 
 
 book['14'] = {
@@ -356,7 +356,7 @@ book['15'] = {
     command : "page\t209",
   },
       ],
-    }; 
+    };
 
 book['16'] = {
       text:"Skirting carefully round the palace, you find a stretch of wall where you think you will have a good chance of climbing undetected. You look around quickly, see no one, and start to climb. You have nearly reached the top of the wall when you hear a shout from below. The Palace Guard has spotted you. What will you do now?",
@@ -370,7 +370,7 @@ book['16'] = {
     command : "page\t391",
   },
       ],
-    }; 
+    };
 
 book['17'] = {
       text:  "Hardly daring to breathe, you set about disarming the trap. After a few seconds of careful work, there is a click, and a handful of small darts - no thicker than needles - falls out on to the ground. In the moonlight you can see something sticky glistening on their points: position intended to kill thieves. You are about to start work on the door when you hear booted feet in the distance, and the unconscious guard begins to groan. Rather than stay and explain, you dodge into an alley which runs down one side of the building, looking for some way in that isn’t quite so exposed.",
@@ -380,13 +380,13 @@ book['17'] = {
     command : "page\t210",
   },
       ],
-    }; 
+    };
 
 book['18'] = {
       text :"You drop on the other side of the palace wall, but the guards are waiting for you, and you are cut down before you can get to your feet. You should have known better than try to break into the palace. Your adventure ends here.",
       choices : [],
 
-}; 
+};
 
 book['19'] = {
       text:"You reach out and touch the hunched figure. It turns round with an inhuman snarl and you find yourself staring into the burning, hate-filled eyes of Ghoul. You have disturbed its nocturnal feast, and now you must flight to keep yourself off the menu.\nGHOUL\tSKILL 8\tSTAMINA 7\n",
@@ -400,7 +400,7 @@ book['19'] = {
     command : "page\t57",
   },
       ],
-    }; 
+    };
 
 book['20'] = {
       text   : "You reach in and touch the disc. Too late, you notice the silver wire which connects it to the second Crystal Warrior. Before you realize what has happened, you feel the crystal sword resting lightly on the back of your neck. Your only hope is to try to take the disc without activating the trap any further.",
@@ -414,7 +414,7 @@ book['20'] = {
     command : "page\t49",
   },
       ],
-    }; 
+    };
 
 book['21'] = {
       text   : "Some instinct tells you that there is something very odd about one of the chests in the strongroom, and you leave hurriedly, closing the iron door behind you. You’ve heard that some people build fake strongrooms full of traps just to make mincemeat of the thieves, and hide their valuables somewhere else. What will you do next?",
@@ -432,7 +432,7 @@ book['21'] = {
     command : "page\t144",
   },
       ],
-    }; 
+    };
 
 book['22'] = {
       text   : "You head for the Singing Bridge. You remember hearing something about a place underneath it - perhaps that’s where the Eye of the Basilisk is hidden. Going down some steps at the side of the bridge, you come to a small wooden hut, with the words KEEP OUT painted on the door.",
@@ -446,7 +446,7 @@ book['22'] = {
     command : "page\t141",
   },
       ],
-    }; 
+    };
 
 book['23'] = {
       text   : "The corpse drops to the ground, but as you watch, the special blue face oozes back out of the dead flesh, and hangs in the air before you, chucking evilly. It is a Possessor Spirit, and you must flight it. Check if you have a magic weapon to fight it with.",
@@ -460,7 +460,7 @@ book['23'] = {
     command : "page\t111",
   },
       ],
-    }; 
+    };
 
 book['24'] = {
       text   : "You hurry silently across the darkened room, feeling your way along one wall. You feel another wall in front of you, and quickly find a doorway and a wooden door. You push and pull, but it doesn’t open, it must be locked.",
@@ -474,7 +474,7 @@ book['24'] = {
     command : "page\t245",
   },
       ],
-    }; 
+    };
 
 book['25'] = {
       text   : "Hardly daring to breath, you pick your way through the bones and other debris. It seems like hours before you are past the holes, but finally you make it. You let out a sigh of relief, and as you do so the Grubs shoot from their burrows agin - you shudder to think how sensitive their hearing is.",
@@ -484,7 +484,7 @@ book['25'] = {
     command : "page\t84",
   },
       ],
-    }; 
+    };
 
 book['26'] = {
       text   : "You walk quietly along the Noose, looking for a beggar. All beggars in Port Blacksand  are members of the Thieves’ Guild, and they can be a very valuable source of information. After a little way, you see Bargo the Wheeler trundling towards you along the darkened street. He was s soldier one, but lost both legs in a war many years ago. Since then, he was been reduced to begging, pushing himself about the city in a little cart. Bargo recognizes you as you approach, and greets you with a nod.\n‘hello, young’ un’, he says. ‘out on your test, eh?’\n You nod, and ask him if he knows anything about Brass. He shrugs.\n\n‘Trust what everybody knows.’ He says.  ‘He’s a big merchant, with a house by the Field Gate and an office in the Merchants’s Guild. Can’t be much help, I’m afraid.’ What will you do next?",
@@ -506,7 +506,7 @@ book['26'] = {
     command : "page\t387",
   },
       ],
-    }; 
+    };
 
 book['27'] = {
       text   : "In your hurry to get out of the cavern, you fail to notice a series of holes in the passage wall. Six small darts shoot across the passage at chest height. Roll one die to see how many of them hit you. Each dart that hits causes 1 STAMINA point of damage; you may halve the total damage (rounding fractions up) if you successfully Test your Luck. If you are still alive, carry on down the passage.",
@@ -516,7 +516,7 @@ book['27'] = {
     command : "page\t191",
   },
       ],
-    }; 
+    };
 
 book['28'] = {
       text   : "You draw your sword as the men approach, and back against the wall. The other customers scramble out of the way - they don’t want to get involve in a fight. Fight the men one at a time.\nFirst THUG\tSKILL 7\tSTAMINA 6\nSecond THUG\tSKILL 6\tSTAMINA 6\nThird THUG\tSKILL 5\tSTAMINA 7",
@@ -526,12 +526,12 @@ book['28'] = {
     command : "page\t332",
   },
       ],
-    }; 
+    };
 
 book['29'] = {
       text   : "You try to prise the lid off the chest - you are certain that the key to getting the Eye of the Basilisk lies inside. As you attack the check, you hear a faint snapping sound from inside it, followed by a stony creak from the second Crystal Warrior. You look up sharply, but are too slow to do anything about the crystal sword which is descending on your neck. Your adventure and your life both end here.",
       choices : [],
-    }; 
+    };
 
 book['30'] = {
       text   : "Your hair bristles as you approach the barrow - you can almost feel the ancient power flowing around you. The trees silhouetted against the dark sky suddenly seem threatening, their branches reaching out to seize you… you shake your head to clear out these wild ideas, and concentrate on what you have to do. You walk right round the barrow, looking for a plain grassy mound. There is a standing stone on one side of barrow, but you can’t find any kind of entrance.",
@@ -545,7 +545,7 @@ book['30'] = {
     command : "page\t206",
   },
       ],
-    }; 
+    };
 
 book['31'] = {
       text   : "The two Skeletons crumble back into dust, hopefully for good this time. You have little time to enjoy your victory, however, for the Skeleton on the plinth begins to rise as soon as its two guards are destroyed. Hefting the huge longsword which lay beside it, the Skeleton Lord advances slowly towards you.\nSKELETON LORD\tSKILL 8\tSTAMINA 6\n\nEvery time the Skeleton Lord wounds you, you lose 2 STAMINA points, and the Skeleton Lord adds 1 to its Attack Strength for the following round only.",
@@ -555,7 +555,7 @@ book['31'] = {
     command : "page\t288",
   },
       ],
-    }; 
+    };
 
 book['32'] = {
       text   : "You look all the way around the smaller house. The only way in seems to be a door on one side. You try the handle, but the door is locked. Choose your next action.",
@@ -573,7 +573,7 @@ book['32'] = {
     command : "page\t129",
   },
       ],
-    }; 
+    };
 
 book['33'] = {
       text   : "In an instant, the Shapechanger has bent bars of the cage back, and leaps out to attack you. Fight it normally.\nSHAPECHANGER\tSKILL 10\tSTAMINA 10.",
@@ -583,7 +583,7 @@ book['33'] = {
     command : "page\t155",
   },
       ],
-    }; 
+    };
 
 book['34'] = {
       text   : "The room is about twenty feet square, and entirely hewn out of rock, an indication of how deep underground you are. The only thing you can see in the room is a large, golden-brown lizard, which lies bleeding and apparently dead in one corner.",
@@ -597,7 +597,7 @@ book['34'] = {
     command : "page\t252",
   },
       ],
-    }; 
+    };
 
 book['35'] = {
       text   : "You just manage to raise your sword in time fend off the attack. You have disturbed a Ghoul from its nocturnal feast, and now you must fight to keep yourself off the menu.\n\nGHOUL\tSKILL 8\tSTAMINA 7\n",
@@ -611,12 +611,12 @@ book['35'] = {
     command : "page\t57",
   },
       ],
-    }; 
+    };
 
 book['36'] = {
       text   : "There are just too many guards. You fight for as long as you can, but eventually something crashes into the back of your head and everything goes black. When you wake up, you are in a dungeon cell. Your test is over, and your life may not have much longer to run. You adventure ends here.",
       choices : []
-    }; 
+    };
 
 
 book['37'] = {
@@ -627,7 +627,7 @@ book['37'] = {
     command : "page\t342",
   },
       ],
-    }; 
+    };
 
 book['38'] = {
       text   : "You aim a blow at the black of the guard’s unprotected head. Roll two dice.",
@@ -641,7 +641,7 @@ book['38'] = {
     command : "page\t310",
   },
       ],
-    }; 
+    };
 
 
 book['39'] = {
@@ -652,12 +652,12 @@ book['39'] = {
     command : "page\t302",
   },
       ],
-    }; 
+    };
 
 book['40'] = {
       text   : "Your first thought is to hold your breath, so that the deadly spores can’t get into your system - but you are too late. Your eyes start to water and you begin to choke, slumping to the ground in a fit of helpless coughing, knowing that each breath brings more of the spores into your body. Your adventure and your life both end here.",
       choices : [],
-    }; 
+    };
 
 
 book['41'] = {
@@ -668,12 +668,12 @@ book['41'] = {
     command : "page\t316",
   },
       ],
-    }; 
+    };
 
 book['42'] = {
       text   : "It’s not good, you just can’t see any way out. You have no option but to return to the Thieves’ Guild and report your failure. You adventure ends here.",
       choices : [],
-    }; 
+    };
 
 book['43'] = {
       text   : "You reach the great stone slab at the end of the passage. It is immense, filling the height and width of the passage. And it appears to be at least a couple of feet thick.",
@@ -691,7 +691,7 @@ book['43'] = {
     command : "page\t198",
   },
       ],
-    }; 
+    };
 
 book['44'] = {
       text   : "One of the guardsmen takes your money with a chuckle. ‘All right,’ he says. ‘We didn’t see you this time. Just make sure we don’t see you again.’",
@@ -701,7 +701,7 @@ book['44'] = {
     command : "page\t177",
   },
       ],
-    }; 
+    };
 
 
 book['45'] = {
@@ -720,7 +720,7 @@ book['45'] = {
     command : "page\t281",
   },
       ],
-    }; 
+    };
 
 book['46'] = {
       text   : "You go into the room. There’s more treasure here than you could every carry, but a pocketful of gems will be enough to make you rich when you get out of here. Although the object of your test is the Eye if the Basilisk, the Guild didn’t say that you couldn’t keep anything else you found along the way. You reach forward to pick up some gems - and suddenly the pile of treasure rears up, and you find yourself wrapped in the coils of a brightly colored snake. Lose 2 STAMINA points as it squeezes you. You have heard of the Scitalis or Treasure Snake - you have fallen for its illusion, and now you must fight for your life!\n\nCITALIS\tSKILL 8\tSTAMINA 10\nIf you wi the first round of combat, the snake is not wounded, but you have escaped from its coils. If you lose, you are still trapped and the snake squeezes you for another 2 STAMINA points of damage. You can not wound the snake until you are free of its coils.",
@@ -730,7 +730,7 @@ book['46'] = {
     command : "page\t168",
   },
       ],
-    }; 
+    };
 
 
 book['47'] = {
@@ -749,7 +749,7 @@ book['47'] = {
     command : "page\t62",
   },
       ],
-    }; 
+    };
 
 book['48'] = {
       text   : "You crawl dazedly into the shadows, and close your eyes, waiting for the Gargoyle to strike. The sound of its wings comes closer and closer, and then it suddenly recedes. You look cautiously upwards to see the Gargoyle’s shadowy form back on its rooftop perch. Obviously it didn’t see where you fell; you thank the gods of luck that it is too stupid to keep looking for very long. Add 1 LUCK point for this fortunate escape. What will you do now?",
@@ -763,13 +763,13 @@ book['48'] = {
     command : "page\t4",
   },
       ],
-    }; 
+    };
 
 
 book['49'] = {
       text   : "Sweet breaks out on your forehead as, painfully slowly, you lift the disc off the silver wire. Then, just at the wrong moment, an involuntary twitch makes you drop it, and it lands with a thump on the silver wire. The Crystal Warrior’s  sword bites into your neck. Your test and your life both end here.",
       choices : [],
-    }; 
+    };
 
 book['50'] = {
       text   : "The door is not locked , so you open it and creep stealthily into the room. It is furnished with a single bed, a wardrobe and dressing table. Someone - a child, judging by the size - is asleep in the bed. You can see nothing of value in the room, just a few dolls on the dressing table and floor. Suddenly, a floorboard creaks loudly under your feet.The sleeping form in the bed murmurs and stirs slightly.",
@@ -783,13 +783,13 @@ book['50'] = {
     command : "page\t201",
   },
       ],
-    }; 
+    };
 
 
 book['51'] = {
       text   : "You hit the door a second time, but still it doesn’t budge. The spores are thick in the air now, and although the cloth over your face gives you some protection, it doesn’t last for ever. Your eyes begin to water, and you start to choke on the spores. You sink to the ground in a fit of uncontrollable coughing, knowing that each breath takes the deadly spores deeper Into your body. Your adventure and your life both end here.",
       choices : []
-    }; 
+    };
 
 book['52'] = {
       text   : "The symbol is familiar, but you can’t make it out. You wish you’d worked harder at learning the secret signs - this might be an important clue, and you have no idea what it means.",
@@ -803,7 +803,7 @@ book['52'] = {
     command : "page\t212",
   },
       ],
-    }; 
+    };
 
 
 book['53'] = {
@@ -814,7 +814,7 @@ book['53'] = {
     command : "page\t136",
   },
       ],
-    }; 
+    };
 
 book['54'] = {
       text   : "Your heart rises as you recognize the sign for a hidden mechanism. There is a way out of here - but where? You look at the walls again, and suddenly realize that the brick on which the symbol is scratched is loose. Pulling the brick out of the wall, you find a small lever down, and closes behind you as you go back into the study. What will you fo now?",
@@ -832,7 +832,7 @@ book['54'] = {
     command : "page\t144",
   },
       ],
-    }; 
+    };
 
 
 book['55'] = {
@@ -843,7 +843,7 @@ book['55'] = {
     command : "page\t335",
   },
  ],
-    }; 
+    };
 
 book['56'] = {
       text   : "You reach into the gap. The tips of your fingers brush something - a catch of some kind. This must be the mechanism that opens the door. You pulled it, and with a sickening thunk a row oof spikes shoots into your hand. The spikes are poisoned. Roll four dice - if the result is equal to your current STAMINA or less, you lose a STAMINA points. If the result is more than your current STAMINA, you lose 4 STAMINA points. Also , you lose 1 SKILL point.",
@@ -853,7 +853,7 @@ book['56'] = {
     command : "page\t43",
   },
   ],
-    }; 
+    };
 
 book['57'] = {
       text   : "The Ghoul falls to the ground at your feet, twitches once and is still. After pausing to catch your breath, you investigate what it was eating, and find to your disgust that it is a human corpse. Searching the chewed body quickly, you turn up 2 gold pieces and a dagger.",
@@ -863,7 +863,7 @@ book['57'] = {
     command : "page\t246",
   },
       ],
-    }; 
+    };
 book['58'] = {
       text   : "If you have PICK LOCK skill, roll two dice.",
       choices : [
@@ -876,7 +876,7 @@ book['58'] = {
     command : "page\t221",
   },
       ],
-    }; 
+    };
 
 book['59'] = {
       text   : "As you lunge through the hail of missiles towards the far side of the room, you spot a door  set into an alcove.",
@@ -890,7 +890,7 @@ book['59'] = {
     command : "page\t317",
   },
       ],
-    }; 
+    };
 
 book['60'] = {
       text   :"You move cautiously forward, and the person in the bed - a young girl - sits bolt upright with a sheltering scream. You have no choice but run before the whole household is woken. You hurry back to the Market Square, planning your next move. It’s too dangerous to go back to Brass’s house, so you will have to do without any information that you could have gained from there. That leaves you two options.",
@@ -904,7 +904,7 @@ book['60'] = {
     command : "page\t144",
   },
       ],
-    }; 
+    };
 
 book['61'] = {
       text   : "You shrink back into the shadows, but your luck is out: you knock something over as you do so, and it fails to the floor with a crash. The breathing stops abruptly, and you hear a faint groan. Whatever is there, you’ve worked it up. What will you do now?",
@@ -922,7 +922,7 @@ book['61'] = {
     command : "page\t119",
   },
       ],
-    }; 
+    };
 
 book['62'] = {
       text   : "The armour is about a hundred years old, and in very good condition. It has been inlaid with gold and silver, and it is probably quite valuable. You can’t carry it out with you, though, so there’s no real point in standing looking at it. You start to turn away, and then you notice something behind the armour, glinting yellow in the light from your hand-lamp. You can’t see what it is, and you’re not sure that you’ll be able to reach it.",
@@ -944,7 +944,7 @@ book['62'] = {
     command : "page\t47",
   },
       ],
-    }; 
+    };
 
 book['63'] = {
       text   : "You cover your mouth and nose, hoping that this will protect you from the worst of the spores, and charge the door, Roll two dice.",
@@ -958,7 +958,7 @@ book['63'] = {
     command : "page\t390",
   },
       ],
-    }; 
+    };
 
 book['64'] = {
       text   : "Madame Star shrugs. ’Well,’ she says，’I do have a living to make, you know. I can’t go round doing things for free.’ ‘it’s obvious that you’ll get nowhere without money. Her price is 2 gold pieces. If you don’t have 2 gold pieces, or if you don’t want to pay, you will have to leave her house, and decide what to do next.",
@@ -980,12 +980,12 @@ book['64'] = {
     command : "page\t387",
   },
       ],
-    }; 
+    };
 
 book['65'] = {
       text   : "You can’t avert your eyes in time, and find yourself staring into those big, glowing yellow eyes. They are the last thing you see, as the Basilisk’s gaze turns to you stone. Your adventure ends here.",
       choices : [],
-    }; 
+    };
 
 book['66'] = {
       text   : "Bald Morri takes your money with a scowl, clears his throat and spits, ‘Brass, ’he says, ‘is a yellow metal, an alloy of copper and zinc.’ You start to explain that you meant Brass the merchant, but her interrupts you. ‘That’s all you’re getting for that kind of money,’ he growls. ‘Now drink up and be off.’ You have no option but to finish your drink and leave the tavern. What will you do next?",
@@ -1003,7 +1003,7 @@ book['66'] = {
     command : "page\t387",
   },
       ],
-    }; 
+    };
 
 book['67'] = {
       text   : "Holding your torch before you, you edge closer to your shadow. If fades as the light strikes it, becoming less substantial as you move closer. It seems to sense the danger of the light, since it makes no move to attack you as you head for the passage that leads out of the cavern.",
@@ -1017,7 +1017,7 @@ book['67'] = {
     command : "page\t27",
   },
       ],
-    }; 
+    };
 
 book['68'] = {
       text   : "You can’t see whatever is throwing the furniture about, but as a small table rises into the air and flies towards you, you realize that there’s a Poltergeists in the room.",
@@ -1031,7 +1031,7 @@ book['68'] = {
     command : "page\t339",
   },
       ],
-    }; 
+    };
 
 book['69'] = {
       text   : "You find a passage leading out of the chamber  and hurry down it, eager to escape the spores. The passage forks, and you can see a number of turnings leading off from each side of either passage, like a maze. Do you have a map?",
@@ -1045,7 +1045,7 @@ book['69'] = {
     command : "page\t81",
   },
       ],
-    }; 
+    };
 
 book['70'] = {
       text   : "You put your ear against the door and listen, but hear nothing. What will you do now?",
@@ -1063,7 +1063,7 @@ book['70'] = {
     command : "page\t76",
   },
       ],
-    }; 
+    };
 
 book['71'] = {
       text   : "Your finger is cut, but not seriously. You have lost the game, and the men insist that you pay up.",
@@ -1077,7 +1077,7 @@ book['71'] = {
     command : "page\t112",
   },
       ],
-    }; 
+    };
 
 book['72'] = {
       text   : "You climb rapidly, and are halfway up the wall before the Footpads even realize what you are doing.",
@@ -1087,7 +1087,7 @@ book['72'] = {
     command : "page\t226",
   },
       ],
-    }; 
+    };
 
 book['73'] = {
       text   : "You realize that you can’t harm the Gargoyle without  a magical weapon, but there may be another way of dealing with it. Do you have:",
@@ -1105,7 +1105,7 @@ book['73'] = {
     command : "page\t340",
   },
       ],
-    }; 
+    };
 
 book['74'] = {
       text   : "The guard does not seem to be particularly alert. He leans against the wall a few feet from the door, and fron the way his head keeps nodding, he appears to be on the verge of dropping off to sleep. You can try sneaking past him.",
@@ -1127,7 +1127,7 @@ book['74'] = {
     command : "page\t210",
   },
       ],
-    }; 
+    };
 
 book['75'] = {
       text   : "You approach the trees carefully, your eyes fixed on the place where you last saw movement. As you draw close, you can see movement again - there’s definitely something in there, but it’s too dark to see quite what it is.",
@@ -1145,7 +1145,7 @@ book['75'] = {
     command : "page\t246",
   },
       ],
-    }; 
+    };
 
 book['76'] = {
       text   : "You listen at the door, but hear nothing. Pushing it gently open, you see a young man in a large fourposter bed, sound asleep and snoring softly. A glance round the room reveals nothing of interest, so you leave, closing the door softly behind you. What will you do now?",
@@ -1171,7 +1171,7 @@ book['76'] = {
     command : "page\t129",
   },
       ],
-    }; 
+    };
 
 book['77'] = {
       text   : "The garden is old and overgrown, more like a jungle these days, but in places you can still traces of a flower-bed, proving that it used to be a garden. Heading towards the blackened clearing where the house once stood, you see what looks like a statue a few yards to your left.",
@@ -1185,7 +1185,7 @@ book['77'] = {
     command : "page\t287",
   },
       ],
-    }; 
+    };
 
 book['78'] = {
       text   : "You draw your sword and back against a wall as the Footpads close round you. One massively built villain steps forwards, armed with a length of heavy chain. ‘Well, well.’ He chuckles unpleasantly. ‘it’s got a sword. Come on, then - let’s see how good you are!’ You must fight the Footpad. \n\n \tFOOTPAD SKILL 8\tSTAMINA 6\n. If you roll double 1 on your attack dice at any time. ‘Test your luck. If you are Lucky, carry on fighting.",
@@ -1199,7 +1199,7 @@ book['78'] = {
     command : "page\t218",
   },
       ],
-    }; 
+    };
 
 book['79'] = {
       text   : "Going thought the door, you find yourself in a passage, which leads off and right.",
@@ -1229,7 +1229,7 @@ book['80'] = {
   {
     option  : "Leave and continue walking round the building?",
     command : "page\t271",
-  },    
+  },
       ],
     };
 
@@ -1246,10 +1246,10 @@ book['81'] = {
     command : "page\t370",
   },
       ],
-    }; 
+    };
 
 book['82'] = {
-      text   : "You stand firm, with your weapon ready, as the Animated Corpse shambles towards you. Fight it normally.\n\n \tANIMATED CORPSE SKILL 5 \tSTAMINA 6\n Because it moves slowly, you can run away after winning a round of combat", 
+      text   : "You stand firm, with your weapon ready, as the Animated Corpse shambles towards you. Fight it normally.\n\n \tANIMATED CORPSE SKILL 5 \tSTAMINA 6\n Because it moves slowly, you can run away after winning a round of combat",
       choices : [
   {
     option  : "Run away",
@@ -1263,54 +1263,54 @@ book['82'] = {
     };
 
 book['83'] = {
-      text   : "You head for the door, but before you reach it you step on something under the carpet. There’s a sound click.", 
+      text   : "You head for the door, but before you reach it you step on something under the carpet. There’s a sound click.",
       choices : [
   {
     option  : "Continue",
     command : "page\t106",
-  }, 
+  },
       ],
-    };    
+    };
 
 book['84'] = {
-      text   : "A few yards further on, the passage widens again, and is faced with dressed stone as before. You come to a door in the right-hand side of the passage.", 
+      text   : "A few yards further on, the passage widens again, and is faced with dressed stone as before. You come to a door in the right-hand side of the passage.",
       choices : [
   {
     option  : "Listen at the door",
     command : "page\t10",
-  }, 
+  },
   {
     option  : "Try to open it",
     command : "page\t140",
-  }, 
+  },
   {
     option  : "Ignore it, carry on down the passage",
     command : "page\t374",
-  }, 
+  },
       ],
     };
 
 book['85'] = {
-      text   : "Your mind works quickly, and you decide that the easiest way to defeat your own shadow is to stop casting it. But how? If you have HIDE skill - you must have the skill itself; a black hooded cloak isn’t good enough here - roll two dice.", 
+      text   : "Your mind works quickly, and you decide that the easiest way to defeat your own shadow is to stop casting it. But how? If you have HIDE skill - you must have the skill itself; a black hooded cloak isn’t good enough here - roll two dice.",
       choices : [
   {
     option  : "The result is equal to your SKILL score or less",
     command : "page\t184",
-  }, 
+  },
   {
     option  : "The result is more than your SKILL score or you do not have HIDE skill",
     command : "page\t311",
-  }, 
+  },
       ],
     };
 
 book['86'] = {
-      text   : "Something makes you suspicious, and you decide to make sure that Dwarf is telling the truth. After all, the dead thief you passed was severely wounded in this room, yet there’s nothing here but a caged Dwarf without a scratch on him. ‘Where is the Master of the Thieves’ Guild?’ You ask. If the Dwarf is really a thief, he will know the answer. The Dwarf does not answer your questions. He reaches through the bars of the cage, trying to catch hold of you. He seems to grow bigger, his skin becomes green and scaly, and spines erupt all along his back. With a ferocious snarl, the Shapechanger bends the bars of the cage, preparing to attack you. If you prefer to leave the room before it frees itself, roll two dice.", 
+      text   : "Something makes you suspicious, and you decide to make sure that Dwarf is telling the truth. After all, the dead thief you passed was severely wounded in this room, yet there’s nothing here but a caged Dwarf without a scratch on him. ‘Where is the Master of the Thieves’ Guild?’ You ask. If the Dwarf is really a thief, he will know the answer. The Dwarf does not answer your questions. He reaches through the bars of the cage, trying to catch hold of you. He seems to grow bigger, his skin becomes green and scaly, and spines erupt all along his back. With a ferocious snarl, the Shapechanger bends the bars of the cage, preparing to attack you. If you prefer to leave the room before it frees itself, roll two dice.",
       choices : [
   {
     option  : "Fight the Shapechanger",
     command : "page\t33",
-  }, 
+  },
   {
     option  : "The roll dice result is equal to your SKILL score or less",
     command : "page\t229",
@@ -1318,7 +1318,7 @@ book['86'] = {
   {
     option  : "If the result is higher than your SKILL score",
     command : "page\t367",
-  },  
+  },
       ],
     };
 
@@ -1328,11 +1328,11 @@ book['87'] = {
   {
     option  : "The result is equal to your SKILL score or less",
     command : "page\t214",
-  }, 
+  },
   {
     option  : "If the result is higher than your SKILL score",
     command : "page\t380",
-  },  
+  },
       ],
     };
 
@@ -1342,7 +1342,7 @@ book['88'] = {
   {
     option  : "You have PICK POCKET skill",
     command : "page\t197",
-  }, 
+  },
   {
     option  : "Try to burn the mould away with your torch",
     command : "page\t160",
@@ -1350,7 +1350,7 @@ book['88'] = {
   {
     option  : "Cover your nose and mouth, charge the door and hope for the best",
     command : "page\t115",
-  },    
+  },
       ],
     };
 
@@ -1360,7 +1360,7 @@ book['89'] = {
   {
     option  : "Turn to 54 if you have SECREAT SIGN skill, 349 if you don’t.",
     command : "page\t54",
-  }, 
+  },
   {
     option  : "Try to burn the mould away with your torch",
     command : "page\t349",
@@ -1368,7 +1368,7 @@ book['89'] = {
   {
     option  : "Cover your nose and mouth, charge the door and hope for the best",
     command : "page\t115",
-  },    
+  },
       ],
     };
 
@@ -1378,7 +1378,7 @@ book['90'] = {
   {
     option  : "Examine the iron door",
     command : "page\t377",
-  }, 
+  },
   {
     option  : "Leave the Merchants' Guild stealthily and search for clues in Brass' house (if you haven't been there before)",
     command : "page\t156",
@@ -1386,7 +1386,7 @@ book['90'] = {
   {
     option  : "Set out in search of Eye of the Basilisk without looking for any more information",
     command : "page\t144",
-  },    
+  },
       ],
     };
 
@@ -1396,11 +1396,11 @@ book['91'] = {
   {
     option  : "If the result is equal to your SKILL score or less",
     command : "page\t190",
-  }, 
+  },
   {
     option  : "If not",
     command : "page\t107",
-  },   
+  },
       ],
     };
 
@@ -1410,11 +1410,11 @@ book['92'] = {
   {
     option  : "You killed the monster in the room",
     command : "page\t34",
-  }, 
+  },
   {
     option  : "If not",
     command : "page\t200",
-  },   
+  },
       ],
     };
 
@@ -1424,11 +1424,11 @@ book['93'] = {
   {
     option  : "Use SPOT HIDDEN skill",
     command : "page\t153",
-  }, 
+  },
   {
     option  : "If you don't have the skill",
     command : "page\t210",
-  },   
+  },
       ],
     };
 
@@ -1438,7 +1438,7 @@ book['94'] = {
   {
     option  : "Light a torch and follow the passage",
     command : "page\t191",
-  }, 
+  },
       ],
     };
 
@@ -1448,7 +1448,7 @@ book['95'] = {
   {
     option  : "Try the upper floor",
     command : "page\t368",
-  }, 
+  },
       ],
     };
 
@@ -1467,7 +1467,7 @@ book['97'] = {
   {
     option  : "Result is more than your SKILL score",
     command : "page\t162",
-  },  
+  },
       ],
     };
 
@@ -1491,7 +1491,7 @@ book['99'] = {
   {
     option  : "If you don't have the skill, leave the room",
     command : "page\t316",
-  },  
+  },
       ],
     };
 
@@ -1971,7 +1971,7 @@ book['134'] = {
   {
     option  : "Leave through the window",
     command : "page\t306",
-  },  
+  },
       ],
     };
 
@@ -3705,7 +3705,7 @@ book['264'] = {
     command : "page\t379",
   },
       ],
-  };  
+  };
 
 book['265'] = {
       text   : "As you climb, you realize that the cavern is really a wide vertical shaft, and soon you reach the Giant Spider’s web, strung right across the shaft from one side to the other. You shudder as you notice several silk-wrapped packages hanging in the web - each is about the right size and shape to be a human body.",
@@ -5571,6 +5571,3 @@ book['400'] = {
 }
 
 module.exports = Midnight;
-
-
-

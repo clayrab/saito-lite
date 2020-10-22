@@ -23,7 +23,7 @@ class Camel extends ModTemplate {
     this.categories = "SCM";
     this.mode = "product";
 
-
+    this.alwaysRun = 1;
     Object.assign(Camel.prototype, utils)
 
   }
@@ -85,7 +85,7 @@ class Camel extends ModTemplate {
   async webServer(app, expressapp, express) {
 
     super.webServer(app, expressapp, express);
-    
+
     let data = {};
     data.mod = this;
 
@@ -103,15 +103,14 @@ class Camel extends ModTemplate {
         res.write(await ScanReturn.render(app, data));
         res.end();
         return;
-                
+
       });
     }
 
-  
 
-    
+
+
   }
 
 }
 module.exports = Camel;
-

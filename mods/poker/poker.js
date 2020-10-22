@@ -19,7 +19,7 @@ class Poker extends GameTemplate {
     this.name = "Poker";
     this.description = 'BETA version of Texas Hold\'em Poker for the Saito Arcade. With five cards on the table and two in your hand, can you bet and bluff your way to victory? This game is a playable demo under active development!';
     this.categories = "Games Arcade Entertainment";
-
+    this.alwaysRun = 1;
     this.card_img_dir = '/poker/img/cards';
     this.useHUD = 0;
 
@@ -507,7 +507,7 @@ class Poker extends GameTemplate {
 
           //
           // if this is the first turn
-          // 
+          //
           if (parseInt(mv[1]) == this.game.player) {
             this.playerTurn();
             return 0;
@@ -689,7 +689,7 @@ class Poker extends GameTemplate {
 
           //
           // Big Blind
-          //    
+          //
           if (this.game.state.player_credit[this.game.state.big_blind_player - 1] <= this.game.state.big_blind) {
             if (this.game.state.player_credit[this.game.state.big_blind_player - 1] == this.game.state.big_blind) {
               this.updateLog(this.game.state.player_names[this.game.state.big_blind_player - 1] + " has no more chips");
@@ -1330,8 +1330,8 @@ class Poker extends GameTemplate {
       newhtml += `
         </div>
         <div class="player-info-name" id="player-info-name-${i + 1}">${this.game.state.player_names[i]}</div>
-        <div class="player-info-chips" id="player-info-chips-${i + 1}">${this.game.state.player_credit[i]} SAITO</div> 
-        
+        <div class="player-info-chips" id="player-info-chips-${i + 1}">${this.game.state.player_credit[i]} SAITO</div>
+
       `;
       boxobj.querySelector(".info").innerHTML = newhtml;
 
@@ -2207,7 +2207,7 @@ class Poker extends GameTemplate {
           }
         }
 
-        if (val[i] == highest_card) {  //if the candiates is as high as the encumbent 
+        if (val[i] == highest_card) {  //if the candiates is as high as the encumbent
           if (this.isHigherSuite(suite[i], highest_suite)) { //if the candidate has a higher suite
             highest_suite = suite[i];
           }
@@ -2463,4 +2463,3 @@ class Poker extends GameTemplate {
 
 
 module.exports = Poker;
-

@@ -7,6 +7,7 @@ class ExplorerCore extends ModTemplate {
     this.name = "Explorer";
     this.description = "Block explorer for the Saito blockchain. Not suitable for lite-clients";
     this.categories = "Utilities Dev";
+    this.alwaysRun = 1;
   }
 
 
@@ -60,7 +61,7 @@ class ExplorerCore extends ModTemplate {
 
       }
     });
-    
+
     expressapp.get('/explorer/mempool', function (req, res) {
 
       res.setHeader('Content-type', 'text/html');

@@ -20,7 +20,7 @@ class Thirteen extends GameTemplate {
     this.publisher_message = `Thirteen Days is owned by <a href="http://jollyrogergames.com/game/13-days/">Jolly Roger Games</a>. This module includes the open source Vassal module explicitly authorized by the publisher. Vassal module requirements are that at least one player per game has purchased a copy of the game. Please support Jolly Roger Games and purchase your copy <a href="http://jollyrogergames.com/game/13-days/">here</a>`;
     this.type       = "strategy boardgame";
     this.categories      = "Games Arcade Entertainment";
-
+    this.alwaysRun = 1;
 
     //
     // this sets the ratio used for determining
@@ -83,9 +83,9 @@ class Thirteen extends GameTemplate {
       obj.title = "Thirteen Days";
       return obj;
     }
-   
+
     return null;
- 
+
   }
 
 
@@ -159,7 +159,7 @@ class Thirteen extends GameTemplate {
       this.game.queue.push("DECKXOR\t1\t1");
       this.game.queue.push("DECK\t1\t"+JSON.stringify(this.returnAgendaCards()));
 
-      
+
       this.game.queue.push("DECKENCRYPT\t2\t2");
       this.game.queue.push("DECKENCRYPT\t2\t1");
       this.game.queue.push("DECKXOR\t2\t2");
@@ -212,7 +212,7 @@ class Thirteen extends GameTemplate {
     // prestige track
     //
     for (var i in this.game.prestige) {
-    
+
       let divname      = '.'+i;
 
       $(divname).css('top', this.scale(this.game.prestige[i].top)+"px");
@@ -227,7 +227,7 @@ class Thirteen extends GameTemplate {
     // flags
     //
     for (var i in this.game.flags) {
-    
+
       let divname      = '#'+i;
       $(divname).css('top', this.scale(this.game.flags[i].top)+"px");
       $(divname).css('left', this.scale(this.game.flags[i].left)+"px");
@@ -241,7 +241,7 @@ class Thirteen extends GameTemplate {
     // defcon track
     //
     for (var i in this.game.defcon) {
-    
+
       let divname      = '.'+i;
 
       $(divname).css('top', this.scale(this.game.defcon[i].top)+"px");
@@ -258,7 +258,7 @@ class Thirteen extends GameTemplate {
     // round track
     //
     for (var i in this.game.rounds) {
-    
+
       let divname      = '.'+i;
 
       $(divname).css('top', this.scale(this.game.rounds[i].top)+"px");
@@ -342,7 +342,7 @@ class Thirteen extends GameTemplate {
       // pick_agenda_card
       // reshuffle_discarded_agenda_cards
       // round
-      // discard 
+      // discard
       // flush
       // flag
       // move_strategy_card_into_alliances
@@ -351,7 +351,7 @@ class Thirteen extends GameTemplate {
       // scoring_phase
       // world_opinion_phase
       // pullcard
-      // share_card 
+      // share_card
       // notify
       // increase_defcon
       // decrease_defcon
@@ -433,7 +433,7 @@ class Thirteen extends GameTemplate {
 
 	let player = parseInt(mv[1]);
 	let ac = this.returnAgendaCards();
-	
+
 	if (this.game.player == player)  {
 
 	  let html = '';
@@ -466,7 +466,7 @@ class Thirteen extends GameTemplate {
 	    if (this.game.player == 1) { html = 'Your (USSR) agenda cards. Waiting for opponent to select: '; }
 	    if (this.game.player == 2) { html = 'Your (US) agenda cards. Waiting for opponent to select:'; }
 	    this.updateStatusAndListCards(html, this.game.deck[0].hand, function(card) {
-	    }); 
+	    });
 	  } else {
 	    if (this.game.player == 1) {
   	      this.updateStatusAndListCards("waiting for US to pick its agenda card: ", this.game.deck[0].hand, function(card) {});
@@ -648,13 +648,13 @@ console.log("tallying alliances before scoring");
 	  //
 	  // only update track on second time
 	  //
-          if (this.total_scoring_this_round < 0) { 
+          if (this.total_scoring_this_round < 0) {
 	    this.updateLog("US gains " + (this.total_scoring_this_round * -1) + " Prestige");
 	  }
-          if (this.total_scoring_this_round > 0) { 
+          if (this.total_scoring_this_round > 0) {
 	    this.updateLog("USSR gains " + this.total_scoring_this_round + " Prestige");
 	  }
-          if (this.total_scoring_this_round == 0) { 
+          if (this.total_scoring_this_round == 0) {
 	    this.updateLog("US and USSR tie for Prestige...");
 	  }
           this.game.state.prestige_track += this.total_scoring_this_round;
@@ -698,9 +698,9 @@ console.log("tallying alliances before scoring");
   	  let television_bonus = 0;
 	  if (this.game.arenas['television'].us > this.game.arenas['television'].ussr) { television_bonus = 2; }
 	  if (this.game.arenas['television'].us < this.game.arenas['television'].ussr) { television_bonus = 1; }
-	  if (television_bonus == 0) { 
+	  if (television_bonus == 0) {
 	    this.updateLog("no-one gets the Television  bonus this turn");
-	    return 1; 
+	    return 1;
 	  }
 
 	  if (this.game.player == television_bonus) {
@@ -721,9 +721,9 @@ console.log("tallying alliances before scoring");
   	  let un_bonus = 0;
 	  if (this.game.arenas['un'].us > this.game.arenas['un'].ussr) { un_bonus = 2; }
 	  if (this.game.arenas['un'].us < this.game.arenas['un'].ussr) { un_bonus = 1; }
-	  if (un_bonus == 0) { 
+	  if (un_bonus == 0) {
 	    this.updateLog("no-one gets the United Nations bonus this turn");
-	    return 1; 
+	    return 1;
 	  }
 	  if (un_bonus == 1) { this.updateLog("USSR secures the Personal Letter"); }
 	  if (un_bonus == 2) { this.updateLog("US secures the Personal Letter"); }
@@ -735,9 +735,9 @@ console.log("tallying alliances before scoring");
 	  let alliances_bonus = 0;
 	  if (this.game.arenas['alliances'].us > this.game.arenas['alliances'].ussr) { alliances_bonus = 2; }
 	  if (this.game.arenas['alliances'].us < this.game.arenas['alliances'].ussr) { alliances_bonus = 1; }
-	  if (alliances_bonus == 0) { 
+	  if (alliances_bonus == 0) {
 	    this.updateLog("no-one gets the Alliances bonus this turn");
-	    return 1; 
+	    return 1;
 	  }
 
 	  if (this.game.player == alliances_bonus) {
@@ -764,7 +764,7 @@ console.log("tallying alliances before scoring");
 	this.game.queue.splice(qe, 1);
 
 	if (this.game.player == player) {
-	
+
 	  let card = this.game.deck[1].hand[0];
 
           let html = '<div class="status-message" id="status-message">You have pulled <span class="showcard" id="'+card+'">' + sc[card].name + '</span> as Aftermath bonus card:<ul>';
@@ -825,7 +825,7 @@ console.log("tallying alliances before scoring");
 
 
         } else {
-	
+
 	  this.rollDice();
 	  return 0;
 
@@ -1071,7 +1071,7 @@ console.log("tallying alliances before scoring");
         this.showBoard();
         this.game.queue.splice(qe, 1);
 	return 1;
- 
+
       }
 
       if (mv[0] == "decrease_defcon") {
@@ -1119,7 +1119,7 @@ console.log("tallying alliances before scoring");
 	}
 
         this.showBoard();
- 
+
       }
       if (mv[0] == "place_command_tokens") {
 
@@ -1127,7 +1127,7 @@ console.log("tallying alliances before scoring");
 	let card = mv[2];
 
 console.log("SHOULD PLACE: " + player);
-	
+
 	if (this.game.player == player) {
 	  this.playerPlaceCommandTokens(player, card);
 	}
@@ -1142,22 +1142,22 @@ console.log("SHOULD PLACE: " + player);
 	let card = mv[2];
 	let sc = this.returnStrategyCards();
 
-	if (player == 1) { 
+	if (player == 1) {
 	  if (this.game.state.ussr_cannot_deflate_defcon_from_events == 1) {
 	    this.game.state.ussr_cannot_deflate_defcon_from_events = 2;
 	  }
         }
-	if (player == 2) { 
+	if (player == 2) {
 	  if (this.game.state.us_cannot_deflate_defcon_from_events == 1) {
 	    this.game.state.us_cannot_deflate_defcon_from_events = 2;
 	  }
         }
 
 	let log_update = '';
-	if (player == 1) { 
+	if (player == 1) {
 	  log_update = 'USSR';
 	}
-	if (player == 2) { 
+	if (player == 2) {
 	  log_update = 'US';
 	}
 	log_update += ' plays <span class="logcard" id="'+card+'">' + sc[card].name + '</span>';
@@ -1222,7 +1222,7 @@ console.log("SHOULD PLACE: " + player);
   	  if (player == 1) {
 	    if (already_updated != this.game.player) {
 
-              if (this.game.state.influence_on_board_ussr+num > 17) { 
+              if (this.game.state.influence_on_board_ussr+num > 17) {
 		num = 17-this.game.state.influence_on_board_ussr;
                 this.updateLog("USSR can only have 17 influence on the board at any time. Reducing placement");
               }
@@ -1232,7 +1232,7 @@ console.log("SHOULD PLACE: " + player);
 	  } else {
 	    if (already_updated != this.game.player) {
 
-              if (this.game.state.influence_on_board_us+num > 17) { 
+              if (this.game.state.influence_on_board_us+num > 17) {
 		num = 17-this.game.state.influence_on_board_us;
                 this.updateLog("USSR can only have 17 influence on the board at any time. Reducing placement");
 	      }
@@ -1258,7 +1258,7 @@ console.log("SHOULD PLACE: " + player);
 	let number = parseInt(mv[4]);
 	let max_per_arena = parseInt(mv[5]);
 	let defcon_trigger = parseInt(mv[6]);
-	
+
 	if (this.game.player == player) {
           this.eventRemoveInfluence(player, player_to_remove, options, number, max_per_arena, defcon_trigger, function() {
 	    thirteen_self.endTurn();
@@ -1347,7 +1347,7 @@ console.log("SHOULD PLACE: " + player);
 	let player_getting_moved = parseInt(mv[2]);
 	let options = JSON.parse(this.app.crypto.base64ToString(mv[3]));
 	let number = parseInt(mv[4]);
-	let max_per_arena = parseInt(mv[5]);	
+	let max_per_arena = parseInt(mv[5]);
 
 	if (this.game.player == player) {
           this.eventShiftDefcon(player, player_getting_moved, options, number, max_per_arena, function() {
@@ -1402,16 +1402,16 @@ console.log("SHOULD PLACE: " + player);
 	    if (action == "remove") {
 	      thirteen_self.eventRemoveInfluence(2, 2, ['un', 'alliances','television'], 2, 2, 0, function(args) {
 	        thirteen_self.endTurn();
-	      }); 
+	      });
 	    }
 	    if (action == "restrict") {
-  	      thirteen_self.addMove("setvar\tcannot_deflate_defcon_from_events\t2"); 
+  	      thirteen_self.addMove("setvar\tcannot_deflate_defcon_from_events\t2");
 	      thirteen_self.endTurn();
 	    }
 
 	  });
 
-    	} 
+    	}
 
 	return 0;
 
@@ -1441,7 +1441,7 @@ console.log("SHOULD PLACE: " + player);
 
 
 
-  
+
 
 
 
@@ -1488,7 +1488,7 @@ console.log("SHOULD PLACE: " + player);
 
       this.updateStatusAndListCards(html, cards, function(card) {
 	if (card == "personal_letter") {
-	  thirteen_self.game.state.personal_letter_bonus = 1; 
+	  thirteen_self.game.state.personal_letter_bonus = 1;
 	  let cards2 = [];
 	  for (let z = 0; z < cards.length; z++) {
 	    if (cards[z] != "personal_letter") {
@@ -1515,7 +1515,7 @@ console.log("SHOULD PLACE: " + player);
   playerPlayStrategyCard(card) {
 
     let thirteen_self  = this;
-    let strategy_cards = this.returnStrategyCards(); 
+    let strategy_cards = this.returnStrategyCards();
     let this_card      = strategy_cards[card];
 
     let html = '';
@@ -1596,14 +1596,14 @@ console.log("SHOULD PLACE: " + player);
   addInfluence(player, arena_id, num) {
 
     if (player == 1) {
-      if (this.game.state.influence_on_board_ussr+num > 17) { 
+      if (this.game.state.influence_on_board_ussr+num > 17) {
 	num = 17-this.game.state.influence_on_board_ussr;
         this.updateLog("USSR can only have 17 influence on the board at any time. Reducing placement");
       }
     }
     if (player == 2) {
-      if (this.game.state.influence_on_board_us+num > 17) { 
-	num = 17-this.game.state.influence_on_board_us; 
+      if (this.game.state.influence_on_board_us+num > 17) {
+	num = 17-this.game.state.influence_on_board_us;
 	this.updateLog("US can only have 17 influence on the board at any time. Reducing placement");
       }
     }
@@ -1678,12 +1678,12 @@ console.log("SHOULD PLACE: " + player);
     let defcon_tracks = [1, 2, 3];
     let only_one_defcon_track = 0;
     let selected_defcon_track = 0;
-    if (number == 100) { 
+    if (number == 100) {
       if (options.length > 1) {
 	selected_defcon_track  = -1;
       }
       only_one_defcon_track = 1;
-      number = max_per_arena; 
+      number = max_per_arena;
     }
 
     args.choosetrack = function() {
@@ -1747,7 +1747,7 @@ console.log("SHOULD PLACE: " + player);
 	  mycallback();
 	  return;
 	}
-	
+
 	selected_defcon_track = action2;
 
         args.choosedirection();
@@ -1967,7 +1967,7 @@ console.log("SHOULD PLACE: " + player);
 	}
 
       });
-    }   
+    }
 
   }
 
@@ -2153,7 +2153,7 @@ console.log("SHOULD PLACE: " + player);
     if (player == 1) { html += 'USSR '; }
     if (player == 2) { html += 'US '; }
     html += 'pick an area to add/remove up to '+tokens+' cubes:</div>';
-        
+
     this.updateStatus(html);
 
     $('.country').off();
@@ -2390,7 +2390,7 @@ console.log("SHOULD PLACE: " + player);
         $(divname).html('');
       }
     }
-    
+
 
   }
   showArenas() {
@@ -2446,7 +2446,7 @@ console.log("SHOULD PLACE: " + player);
     cubes = this.game.arenas[arena_id].us;
     this.game.state.influence_on_board_us += cubes;
     if (cubes > 0) {
- 
+
       let starting_point = width / 2;
       let cube_gap = 50;
       if (cubes > 1) {
@@ -2484,14 +2484,14 @@ console.log("SHOULD PLACE: " + player);
       }
 
     }
- 
+
     //
     // ussr cubes
     //
     cubes = this.game.arenas[arena_id].ussr;
     this.game.state.influence_on_board_ussr += cubes;
     if (cubes > 0) {
- 
+
       let starting_point = width / 2;
       let cube_gap = 50;
       if (cubes > 1) {
@@ -2540,7 +2540,7 @@ console.log("SHOULD PLACE: " + player);
 
 
 
- 
+
 
 
 
@@ -2801,57 +2801,57 @@ console.log("SHOULD PLACE: " + player);
 
     var flags = {};
 
-    flags['cuba_pol_flag'] = { 
-	top : 500, 
-	left : 710 , 
+    flags['cuba_pol_flag'] = {
+	top : 500,
+	left : 710 ,
     }
-    flags['cuba_mil_flag'] = { 
-	top : 845, 
-	left : 810 , 
+    flags['cuba_mil_flag'] = {
+	top : 845,
+	left : 810 ,
     }
-    flags['atlantic_flag'] = { 
-	top : 510, 
-	left : 1040 , 
+    flags['atlantic_flag'] = {
+	top : 510,
+	left : 1040 ,
     }
-    flags['berlin_flag'] = { 
-	top : 290, 
-	left : 1340 , 
+    flags['berlin_flag'] = {
+	top : 290,
+	left : 1340 ,
     }
-    flags['turkey_flag'] = { 
-	top : 290, 
-	left : 1660 , 
+    flags['turkey_flag'] = {
+	top : 290,
+	left : 1660 ,
     }
-    flags['italy_flag'] = { 
-	top : 530, 
-	left : 1615 , 
+    flags['italy_flag'] = {
+	top : 530,
+	left : 1615 ,
     }
-    flags['un_flag'] = { 
-	top : 710, 
-	left : 1300 , 
+    flags['un_flag'] = {
+	top : 710,
+	left : 1300 ,
     }
-    flags['television_flag'] = { 
-	top : 965, 
-	left : 1190 , 
+    flags['television_flag'] = {
+	top : 965,
+	left : 1190 ,
     }
-    flags['alliances_flag'] = { 
-	top : 885, 
-	left : 1630 , 
+    flags['alliances_flag'] = {
+	top : 885,
+	left : 1630 ,
     }
-    flags['military_flag'] = { 
-	top : 567, 
-	left : 1815 , 
+    flags['military_flag'] = {
+	top : 567,
+	left : 1815 ,
     }
-    flags['political_flag'] = { 
-	top : 567, 
-	left : 1877 , 
+    flags['political_flag'] = {
+	top : 567,
+	left : 1877 ,
     }
-    flags['world_opinion_flag'] = { 
-	top : 566, 
-	left : 1940 , 
+    flags['world_opinion_flag'] = {
+	top : 566,
+	left : 1940 ,
     }
-    flags['personal_letter_flag'] = { 
-	top : 1280, 
-	left : 1150 , 
+    flags['personal_letter_flag'] = {
+	top : 1280,
+	left : 1150 ,
     }
 
     return flags;
@@ -2863,66 +2863,66 @@ console.log("SHOULD PLACE: " + player);
 
     var arenas = {};
 
-    arenas['cuba_pol'] = { 
-	top : 570, 
-	left : 520 , 
-	us : 0 , 
+    arenas['cuba_pol'] = {
+	top : 570,
+	left : 520 ,
+	us : 0 ,
 	ussr : 0,
 	name : "Cuba (political)",
     }
-    arenas['cuba_mil'] = { 
-	top : 915, 
-	left : 620 , 
-	us : 0 , 
+    arenas['cuba_mil'] = {
+	top : 915,
+	left : 620 ,
+	us : 0 ,
 	ussr : 1,
 	name : "Cuba (military)",
     }
-    arenas['atlantic'] = { 
-	top : 580, 
-	left : 850 , 
-	us : 0 , 
+    arenas['atlantic'] = {
+	top : 580,
+	left : 850 ,
+	us : 0 ,
 	ussr : 0,
 	name : "Atlantic",
     }
-    arenas['berlin'] = { 
-	top : 360, 
-	left : 1150 , 
-	us : 0 , 
+    arenas['berlin'] = {
+	top : 360,
+	left : 1150 ,
+	us : 0 ,
 	ussr : 1,
 	name : "Berlin",
     }
-    arenas['turkey'] = { 
-	top : 360, 
-	left : 1470 , 
-	us : 1 , 
+    arenas['turkey'] = {
+	top : 360,
+	left : 1470 ,
+	us : 1 ,
 	ussr : 0,
 	name : "Turkey",
     }
-    arenas['italy'] = { 
-	top : 600, 
-	left : 1425 , 
-	us : 1 , 
+    arenas['italy'] = {
+	top : 600,
+	left : 1425 ,
+	us : 1 ,
 	ussr : 0,
 	name : "Italy",
     }
-    arenas['un'] = { 
-	top : 780, 
-	left : 1110 , 
-	us : 0 , 
+    arenas['un'] = {
+	top : 780,
+	left : 1110 ,
+	us : 0 ,
 	ussr : 0,
 	name : "United Nations",
     }
-    arenas['television'] = { 
-	top : 1035, 
-	left : 1000 , 
-	us : 0 , 
+    arenas['television'] = {
+	top : 1035,
+	left : 1000 ,
+	us : 0 ,
 	ussr : 0,
 	name : "Television",
     }
-    arenas['alliances'] = { 
-	top : 955, 
-	left : 1440 , 
-	us : 0 , 
+    arenas['alliances'] = {
+	top : 955,
+	left : 1440 ,
+	us : 0 ,
 	ussr : 0,
 	name : "Alliances",
     }
@@ -2939,10 +2939,10 @@ console.log("SHOULD PLACE: " + player);
     let deck = {};
     let thirteen_self = this;
 
-    deck['a01b']            = { 
-	img : "Agenda Card 01b.png" , 
-	name : "Military Track", 
-	flag : "military_flag", 
+    deck['a01b']            = {
+	img : "Agenda Card 01b.png" ,
+	name : "Military Track",
+	flag : "military_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -2977,10 +2977,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a02b']            = { 
-	img : "Agenda Card 02b.png" , 
-	name : "Military Track", 
-	flag : "military_flag", 
+    deck['a02b']            = {
+	img : "Agenda Card 02b.png" ,
+	name : "Military Track",
+	flag : "military_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3014,10 +3014,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a03b']            = { 
-	img : "Agenda Card 03b.png" , 
-	name : "Political Track", 
-	flag : "political_flag", 
+    deck['a03b']            = {
+	img : "Agenda Card 03b.png" ,
+	name : "Political Track",
+	flag : "political_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3051,10 +3051,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a04b']            = { 
-	img : "Agenda Card 04b.png" , 
-	name : "Political Track", 
-	flag : "political_flag", 
+    deck['a04b']            = {
+	img : "Agenda Card 04b.png" ,
+	name : "Political Track",
+	flag : "political_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3088,10 +3088,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a05b']            = { 
-	img : "Agenda Card 05b.png" , 
-	name : "World Opinion Track", 
-	flag : "world_opinion_flag", 
+    deck['a05b']            = {
+	img : "Agenda Card 05b.png" ,
+	name : "World Opinion Track",
+	flag : "world_opinion_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3125,10 +3125,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a06b']            = { 
-	img : "Agenda Card 06b.png" , 
-	name : "World Opinion Track", 
-	flag : "world_opinion_flag", 
+    deck['a06b']            = {
+	img : "Agenda Card 06b.png" ,
+	name : "World Opinion Track",
+	flag : "world_opinion_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3162,10 +3162,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a07b']            = { 
-	img : "Agenda Card 07b.png" , 
-	name : "Turkey", 
-	flag : "turkey_flag", 
+    deck['a07b']            = {
+	img : "Agenda Card 07b.png" ,
+	name : "Turkey",
+	flag : "turkey_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3189,10 +3189,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a08b']            = { 
-	img : "Agenda Card 08b.png" , 
-	name : "Berlin", 
-	flag : "berlin_flag", 
+    deck['a08b']            = {
+	img : "Agenda Card 08b.png" ,
+	name : "Berlin",
+	flag : "berlin_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3216,10 +3216,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a09b']            = { 
-	img : "Agenda Card 09b.png" , 
-	name : "Italy", 
-	flag : "italy_flag", 
+    deck['a09b']            = {
+	img : "Agenda Card 09b.png" ,
+	name : "Italy",
+	flag : "italy_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3243,10 +3243,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a10b']            = { 
-	img : "Agenda Card 10b.png" , 
-	name : "Cuba (pol)", 
-	flag : "cuba_pol_flag", 
+    deck['a10b']            = {
+	img : "Agenda Card 10b.png" ,
+	name : "Cuba (pol)",
+	flag : "cuba_pol_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3266,19 +3266,19 @@ console.log("SHOULD PLACE: " + player);
 	  }
 
 	  if (winner == 1) {
-	    if (thirteen_self.game.arenas['cuba_mil'].ussr > thirteen_self.game.arenas['cuba_mil'].us) {	    
+	    if (thirteen_self.game.arenas['cuba_mil'].ussr > thirteen_self.game.arenas['cuba_mil'].us) {
 	      difference++;
 	    }
-	    if (thirteen_self.game.arenas['atlantic'].ussr > thirteen_self.game.arenas['atlantic'].us) {	    
+	    if (thirteen_self.game.arenas['atlantic'].ussr > thirteen_self.game.arenas['atlantic'].us) {
 	      difference++;
 	    }
 	  }
 
 	  if (winner == 2) {
-	    if (thirteen_self.game.arenas['cuba_mil'].ussr < thirteen_self.game.arenas['cuba_mil'].us) {	    
+	    if (thirteen_self.game.arenas['cuba_mil'].ussr < thirteen_self.game.arenas['cuba_mil'].us) {
 	      difference++;
 	    }
-	    if (thirteen_self.game.arenas['atlantic'].ussr < thirteen_self.game.arenas['atlantic'].us) {	    
+	    if (thirteen_self.game.arenas['atlantic'].ussr < thirteen_self.game.arenas['atlantic'].us) {
 	      difference++;
 	    }
 	  }
@@ -3289,10 +3289,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a11b']            = { 
-	img : "Agenda Card 11b.png" , 
-	name : "Cuba (mil)", 
-	flag : "cuba_mil_flag", 
+    deck['a11b']            = {
+	img : "Agenda Card 11b.png" ,
+	name : "Cuba (mil)",
+	flag : "cuba_mil_flag",
 	score : function() {
 
 
@@ -3313,19 +3313,19 @@ console.log("SHOULD PLACE: " + player);
 	  }
 
 	  if (winner == 1) {
-	    if (thirteen_self.game.arenas['cuba_pol'].ussr > thirteen_self.game.arenas['cuba_pol'].us) {	    
+	    if (thirteen_self.game.arenas['cuba_pol'].ussr > thirteen_self.game.arenas['cuba_pol'].us) {
 	      difference++;
 	    }
-	    if (thirteen_self.game.arenas['atlantic'].ussr > thirteen_self.game.arenas['atlantic'].us) {	    
+	    if (thirteen_self.game.arenas['atlantic'].ussr > thirteen_self.game.arenas['atlantic'].us) {
 	      difference++;
 	    }
 	  }
 
 	  if (winner == 2) {
-	    if (thirteen_self.game.arenas['cuba_pol'].ussr < thirteen_self.game.arenas['cuba_pol'].us) {	    
+	    if (thirteen_self.game.arenas['cuba_pol'].ussr < thirteen_self.game.arenas['cuba_pol'].us) {
 	      difference++;
 	    }
-	    if (thirteen_self.game.arenas['atlantic'].ussr < thirteen_self.game.arenas['atlantic'].us) {	    
+	    if (thirteen_self.game.arenas['atlantic'].ussr < thirteen_self.game.arenas['atlantic'].us) {
 	      difference++;
 	    }
 	  }
@@ -3336,10 +3336,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a12b']            = { 
-	img : "Agenda Card 12b.png" , 
-	name : "Atlantic", 
-	flag : "atlantic_flag", 
+    deck['a12b']            = {
+	img : "Agenda Card 12b.png" ,
+	name : "Atlantic",
+	flag : "atlantic_flag",
 	score : function() {
 
 	  let winner = 0;
@@ -3359,19 +3359,19 @@ console.log("SHOULD PLACE: " + player);
 	  }
 
 	  if (winner == 1) {
-	    if (thirteen_self.game.arenas['cuba_pol'].ussr > thirteen_self.game.arenas['cuba_pol'].us) {	    
+	    if (thirteen_self.game.arenas['cuba_pol'].ussr > thirteen_self.game.arenas['cuba_pol'].us) {
 	      difference++;
 	    }
-	    if (thirteen_self.game.arenas['cuba_mil'].ussr > thirteen_self.game.arenas['cuba_mil'].us) {	    
+	    if (thirteen_self.game.arenas['cuba_mil'].ussr > thirteen_self.game.arenas['cuba_mil'].us) {
 	      difference++;
 	    }
 	  }
 
 	  if (winner == 2) {
-	    if (thirteen_self.game.arenas['cuba_pol'].ussr < thirteen_self.game.arenas['cuba_pol'].us) {	    
+	    if (thirteen_self.game.arenas['cuba_pol'].ussr < thirteen_self.game.arenas['cuba_pol'].us) {
 	      difference++;
 	    }
-	    if (thirteen_self.game.arenas['cuba_mil'].ussr < thirteen_self.game.arenas['cuba_mil'].us) {	    
+	    if (thirteen_self.game.arenas['cuba_mil'].ussr < thirteen_self.game.arenas['cuba_mil'].us) {
 	      difference++;
 	    }
 	  }
@@ -3382,10 +3382,10 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['a13b']            = { 
-	img : "Agenda Card 13b.png" , 
-	name : "Personal Letter", 
-	flag : "personal_letter_flag", 
+    deck['a13b']            = {
+	img : "Agenda Card 13b.png" ,
+	name : "Personal Letter",
+	flag : "personal_letter_flag",
 	score : function() {
 
 	  if (thirteen_self.game.state.personal_letter == 1) { return 2; }
@@ -3407,7 +3407,7 @@ console.log("SHOULD PLACE: " + player);
     let deck = {};
 
 
-    deck['s01b']            = { 
+    deck['s01b']            = {
 	img : "Strategy Card 01b.png" ,
 	name : "Speech to the Nation",
 	text : "Place up to three influence cubes in total on one or more world opinion battlegrounds. max 2 per battleground",
@@ -3420,12 +3420,12 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.updateStatus("<div class='status-message' id='status-message'>" + 'Place up to three influence cubes in total on one or more world opinion battlegrounds. max 2 per battleground: <p></p><ul><li class="card" id="done">finish</li></ul></div>');
 	  thirteen_self.eventAddInfluence(player, player, ['un','television','alliances'], 3, 2, 0, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 
 	},
     }
-    deck['s02b']            = { 
-	img : "Strategy Card 02b.png" , 
+    deck['s02b']            = {
+	img : "Strategy Card 02b.png" ,
 	name : "The Guns of August",
 	text : "Escalate/deflate one of your DEFCON tracks by up to 2 steps. Then Command 1 Influence cube",
 	side : "neutral",
@@ -3441,15 +3441,15 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['s03b']            = { 
-	img : "Strategy Card 03b.png" , 
+    deck['s03b']            = {
+	img : "Strategy Card 03b.png" ,
 	name : "Fifty-Fifty",
 	text : "The player with the most Influence on the Television battleground may escalate / deflate two of their DEFCON tracks by 1 step (any mix)",
 	side : "neutral",
 	tokens : 3 ,
 	defcon : 0 ,
 	event : function(player) {
-  
+
 	  let who_goes = 0;
 	  if (thirteen_self.game.arenas['television'].us > thirteen_self.game.arenas['television'].ussr) { who_goes = 2; }
 	  if (thirteen_self.game.arenas['television'].us < thirteen_self.game.arenas['television'].ussr) { who_goes = 1; }
@@ -3466,9 +3466,9 @@ console.log("SHOULD PLACE: " + player);
 	      thirteen_self.eventShiftDefcon(player, player, [1, 2, 3], 1, 1, function(args) {
 	        thirteen_self.eventShiftDefcon(player, player, [1, 2, 3], 1, 1, function(args) {
 	          thirteen_self.endTurn();
-	        }); 
+	        });
 	      });
- 
+
 
 	    } else {
 
@@ -3484,8 +3484,8 @@ console.log("SHOULD PLACE: " + player);
 	  }
 	},
     }
-    deck['s04b']            = { 
-	img : "Strategy Card 04b.png" , 
+    deck['s04b']            = {
+	img : "Strategy Card 04b.png" ,
 	name : "SOPs",
 	text : "All your Command actions have +1 Influence cube for this round",
 	side : "neutral",
@@ -3499,17 +3499,17 @@ console.log("SHOULD PLACE: " + player);
 	  // all your command actions have +1 influence cube this round
 	  thirteen_self.updateLog("You get +1 bonus to your command tokens for remainder of turn");
 	  if (player == 1) {
-  	    thirteen_self.addMove("setvar\tadd_command_token_bonus\t1"); 
+  	    thirteen_self.addMove("setvar\tadd_command_token_bonus\t1");
 	  } else {
-  	    thirteen_self.addMove("setvar\tadd_command_token_bonus\t2"); 
+  	    thirteen_self.addMove("setvar\tadd_command_token_bonus\t2");
 	  }
   	  thirteen_self.addMove("notify\t"+playern+" adds +1 bonus to command tokens this turn");
 	  thirteen_self.endTurn();
 
 	},
     }
-    deck['s05b']            = { 
-	img : "Strategy Card 05b.png" , 
+    deck['s05b']            = {
+	img : "Strategy Card 05b.png" ,
 	name : "Close Allies",
 	text : "Place up to 2 Influence cubes in total on one more political battlegrounds",
 	side : "neutral",
@@ -3521,12 +3521,12 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.updateStatus("<div class='status-message' id='status-message'>Place up to two influence cubes in total on one or more political battlegrounds: <p></p><ul><li class='card' id='done'>click here when done</li></ul></div>");
 	  thirteen_self.eventAddInfluence(player, player, ['cuba_pol','italy','turkey'], 2, 2, 0, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 
 	},
     }
-    deck['s06b']            = { 
-	img : "Strategy Card 06b.png" , 
+    deck['s06b']            = {
+	img : "Strategy Card 06b.png" ,
 	name : "Intelligence Reports",
 	text : "Draw one random Strategy card from your opponent's hand. Play it as normal or discard it. Opponent draws a replacement card",
 	side : "neutral",
@@ -3540,11 +3540,11 @@ console.log("SHOULD PLACE: " + player);
           thirteen_self.addMove("DEAL\t2\t"+opponent+"\t1");
 	  thirteen_self.addMove("pullcard\t"+thirteen_self.game.player);
 	  thirteen_self.endTurn();
- 
+
 	},
     }
-    deck['s07b']            = { 
-	img : "Strategy Card 07b.png" , 
+    deck['s07b']            = {
+	img : "Strategy Card 07b.png" ,
 	name : "Summit Meeting",
 	text : "Discard any number of Strategy cards from your hand. Draw one Strategy card per card so discarded",
 	side : "neutral",
@@ -3589,7 +3589,7 @@ console.log("SHOULD PLACE: " + player);
                   thirteen_self.updateLog("Shuffling discarded cards back into the deck...");
 		}
 	      }
-	
+
 	      thirteen_self.endTurn();
 
 	    } else {
@@ -3605,8 +3605,8 @@ console.log("SHOULD PLACE: " + player);
 	  });
 	},
     }
-    deck['s08b']            = { 
-	img : "Strategy Card 08b.png" , 
+    deck['s08b']            = {
+	img : "Strategy Card 08b.png" ,
 	name : "To the Brink",
 	text : "Play on opponent. All their Command actions have -1 Influence cube for this round (to a minimum of 1 Influence cube)",
 	side : "neutral",
@@ -3623,11 +3623,11 @@ console.log("SHOULD PLACE: " + player);
 	    thirteen_self.addMove("notify\tUSSR player command actions have -1 bonus this round");
 	  }
 	  thirteen_self.endTurn();
- 
+
 	},
     }
-    deck['s09b']            = { 
-	img : "Strategy Card 09b.png" , 
+    deck['s09b']            = {
+	img : "Strategy Card 09b.png" ,
 	name : "Nuclear Submarines",
 	text : "Place up to 2 Influence cubes in total on one or more military battlegrounds",
 	side : "neutral",
@@ -3639,11 +3639,11 @@ console.log("SHOULD PLACE: " + player);
 	    thirteen_self.updateStatus("<div class='status-message' id='status-message'>Place up to two influence cubes in total on one or more military battlegrounds: <p></p><ul><li class='card' id='done'>click here when done</li></ul></div>");
 	    thirteen_self.eventAddInfluence(player, player, ['cuba_mil','atlantic','berlin'], 2, 2, 0, function(args) {
 	      thirteen_self.endTurn();
-	    }); 
+	    });
 	},
     }
-    deck['s10b']            = { 
-	img : "Strategy Card 10b.png" , 
+    deck['s10b']            = {
+	img : "Strategy Card 10b.png" ,
 	name : "U Thant",
 	text : "Deflate all your DEFCON tracks by 1 step",
 	side : "neutral",
@@ -3659,8 +3659,8 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.endTurn();
 	},
     }
-    deck['s11b']            = { 
-	img : "Strategy Card 11b.png" , 
+    deck['s11b']            = {
+	img : "Strategy Card 11b.png" ,
 	name : "Containment",
 	text : "Play on opponent. They can't use Events from cards they played themselves to deflate their DEFCON tracks for this round",
 	side : "neutral",
@@ -3670,16 +3670,16 @@ console.log("SHOULD PLACE: " + player);
 
 	  // your opponent cannot use events to reduce DEFCON
 	  if (player == 1) {
-  	    thirteen_self.addMove("setvar\tcannot_deflate_defcon_from_events\t2"); 
+  	    thirteen_self.addMove("setvar\tcannot_deflate_defcon_from_events\t2");
 	  } else {
-  	    thirteen_self.addMove("setvar\tcannot_deflate_defcon_from_events\t1"); 
+  	    thirteen_self.addMove("setvar\tcannot_deflate_defcon_from_events\t1");
 	  }
 	  thirteen_self.endTurn();
- 
+
 	},
     }
-    deck['s12b']            = { 
-	img : "Strategy Card 12b.png" , 
+    deck['s12b']            = {
+	img : "Strategy Card 12b.png" ,
 	name : "A Face-Saver",
 	text : "Command 3 Influence cubes. Then opponent may Command 1 Influence cube",
 	side : "neutral",
@@ -3697,8 +3697,8 @@ console.log("SHOULD PLACE: " + player);
 
 	}
     }
-    deck['s13b']            = { 
-	img : "Strategy Card 13b.png" , 
+    deck['s13b']            = {
+	img : "Strategy Card 13b.png" ,
 	name : "Scramble",
 	text : "Place 1 Influence cube on each of up to three different battlegrounds",
 	side : "neutral",
@@ -3708,12 +3708,12 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.updateStatus("<div class='status-message' id='status-message'>Place up to three influence cubes on up to three battlegrounds (1 each): <p></p><ul><li class='card' id='done'>click here when done</li></ul></div>");
 	  thirteen_self.eventAddInfluence(player, player, thirteen_self.all_battlegrounds, 3, 1, 0, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 
 	},
     }
-    deck['s14b']            = { 
-	img : "Strategy Card 14b.png" , 
+    deck['s14b']            = {
+	img : "Strategy Card 14b.png" ,
 	name : "Mathematical Precision",
 	text : "Escalate/deflate the US political DEFCON track by up to 2 steps. Then Command 1 Influence cube",
 	side : "us",
@@ -3726,13 +3726,13 @@ console.log("SHOULD PLACE: " + player);
 	    thirteen_self.eventAddInfluence(player, player, ['cuba_pol', 'cuba_mil', 'atlantic', 'turkey', 'berlin', 'italy', 'un','television','alliances'], 1, 1, 1, function(args) {
 	      thirteen_self.endTurn();
 	    });
-	  }); 
+	  });
 
 
 	},
     }
-    deck['s15b']            = { 
-	img : "Strategy Card 15b.png" , 
+    deck['s15b']            = {
+	img : "Strategy Card 15b.png" ,
 	name : "Excomm",
 	text : "Place up to 4 Influence cubes in total on battlegrounds where the US player currently has no Influence cubes. Max 2 per battleground",
 	side : "us",
@@ -3749,12 +3749,12 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.updateStatus("<div class='status-message' id='status-message'>Place up to 4 Influence in battlegrounds where the US currently has no influence. Max 2 per battleround: <p></p><ul><li class='card' id='done'>click here when done</li></ul></div>");
 	  thirteen_self.eventAddInfluence(player, player, options, 4, 2, 1, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 
 	},
     }
-    deck['s16b']            = { 
-	img : "Strategy Card 16b.png" , 
+    deck['s16b']            = {
+	img : "Strategy Card 16b.png" ,
 	name : "Public Protests",
 	text : "Remove any number of US Influence cubes from any one battleground",
 	side : "us",
@@ -3786,13 +3786,13 @@ console.log("SHOULD PLACE: " + player);
 
 	  thirteen_self.eventRemoveInfluence(thirteen_self.game.player, 2, options, 5, 5, 0, function() {
 	    thirteen_self.endTurn();
-	  });	
+	  });
 
 
 	},
     }
-    deck['s17b']            = { 
-	img : "Strategy Card 17b.png" , 
+    deck['s17b']            = {
+	img : "Strategy Card 17b.png" ,
 	name : "Lessons of Munich",
 	text : "Place up to 4 Influence ubes in total on Berlin, Italy, and Turkey Battlegrounds. Max 2 per battleground",
 	side : "us",
@@ -3801,12 +3801,12 @@ console.log("SHOULD PLACE: " + player);
 	event : function(player) {
 	  thirteen_self.eventAddInfluence(player, player, ['berlin','italy','turkey'], 4, 2, 0, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 
 	},
     }
-    deck['s18b']            = { 
-	img : "Strategy Card 18b.png" , 
+    deck['s18b']            = {
+	img : "Strategy Card 18b.png" ,
 	name : "Operation Mongoose",
 	text : "US gains 1 Prestige. Then USSR may escalate / deflate a US DEFCON track by 1 step",
 	side : "us",
@@ -3824,8 +3824,8 @@ console.log("SHOULD PLACE: " + player);
     }
 
 
-    deck['s19b']            = { 
-	img : "Strategy Card 19b.png" , 
+    deck['s19b']            = {
+	img : "Strategy Card 19b.png" ,
 	name : "Air Strike",
 	text : "EITHER remove half the USSR Influence cubes from one Cuba battleground (rounded up) OR place up to 2 Influence cubes on the Alliances battleground",
 	side : "us",
@@ -3854,13 +3854,13 @@ console.log("SHOULD PLACE: " + player);
 	      thirteen_self.updateStatus("<div class='status-message' id='status-message'>Add two influence to the Alliances battleground</div>");
 	      thirteen_self.eventAddInfluence(2, 2, ['alliances'], 2, 2, 0, function() {
 	        thirteen_self.endTurn();
-	      }); 
+	      });
 	    }
           });
         }
     }
-    deck['s20b']            = { 
-	img : "Strategy Card 20b.png" , 
+    deck['s20b']            = {
+	img : "Strategy Card 20b.png" ,
 	name : "Non-Invasion Pledge",
 	text : "Remove up to 2 USSR Influence cubes from the Turkey battleground. Then escalate/deflate the US political DEFCON track by up to 2 steps",
 	side : "us",
@@ -3872,12 +3872,12 @@ console.log("SHOULD PLACE: " + player);
 	    thirteen_self.eventDecreaseDefcon(player, player, ['political'], 2, 2, function(args) {
 	      thirteen_self.endTurn();
 	    });
-	  }); 
+	  });
 
 	},
     }
-    deck['s21b']            = { 
-	img : "Strategy Card 21b.png" , 
+    deck['s21b']            = {
+	img : "Strategy Card 21b.png" ,
 	name : "Offensive Missiles",
 	text : "If US political DEFCON track is in the DEFCON 3 area, place up to 1 Influence cube on all political battlegrounds",
 	side : "us",
@@ -3900,8 +3900,8 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['s22b']            = { 
-	img : "Strategy Card 22b.png" , 
+    deck['s22b']            = {
+	img : "Strategy Card 22b.png" ,
 	name : "Invasion of Cuba",
 	text : "Escalate the US military DEFCON track by up to 2 steps. You may then deflate another US DEFCON track by the same number of steps",
 	side : "us",
@@ -3917,8 +3917,8 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['s23b']            = { 
-	img : "Strategy Card 23b.png" , 
+    deck['s23b']            = {
+	img : "Strategy Card 23b.png" ,
 	name : "Quarantine",
 	text : "Place up to 2 Influence cubes on the Atlantic battleground",
 	side : "us",
@@ -3928,12 +3928,12 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.updateStatus("<div class='status-message' id='status-message'>Place up to 2 Influence on the Atlantic battleground: <p></p><ul><li class='card' id='done'>click here when done</li></ul></div>");
 	  thirteen_self.eventAddInfluence(player, player, ['atlantic'], 2, 2, 0, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 
 	},
     }
-    deck['s24b']            = { 
-	img : "Strategy Card 24b.png" , 
+    deck['s24b']            = {
+	img : "Strategy Card 24b.png" ,
 	name : "U-2 Photographs",
 	text : "Command 3 Influence cubes on to one military battleground",
 	side : "us",
@@ -3942,12 +3942,12 @@ console.log("SHOULD PLACE: " + player);
 	event : function(player) {
 	  thirteen_self.eventAddInfluence(player, player, ['cuba_mil','berlin','atlantic'], 3, 3, 1, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 
 	},
     }
-    deck['s25b']            = { 
-	img : "Strategy Card 25b.png" , 
+    deck['s25b']            = {
+	img : "Strategy Card 25b.png" ,
 	name : "Wave and Smile",
 	text : "Remove up to 2 US Influence cubes in total from one or more battlerounds. Place them on other battlegrounds",
 	side : "us",
@@ -3963,8 +3963,8 @@ console.log("SHOULD PLACE: " + player);
 	  });
 	},
     }
-    deck['s26b']            = { 
-	img : "Strategy Card 26b.png" , 
+    deck['s26b']            = {
+	img : "Strategy Card 26b.png" ,
 	name : "Eyeball to Eyeball",
 	text : "If US is more escalated than USSR on the military DEFCON track, place up to 3 Influence cubes in total on one or both Cuba battlegrounds",
 	side : "us",
@@ -3982,8 +3982,8 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['s27b']            = { 
-	img : "Strategy Card 27b.png" , 
+    deck['s27b']            = {
+	img : "Strategy Card 27b.png" ,
 	name : "MRBMs & IRBMs",
 	text : "Escalate/deflate the USSR military DEFCON track by up to 2 steps. Then Command 1 Influence cube",
 	side : "ussr",
@@ -3999,9 +3999,9 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['s28b']            = { 
+    deck['s28b']            = {
 
-	img : "Strategy Card 28b.png" , 
+	img : "Strategy Card 28b.png" ,
 	name : "Moscow is the Brain",
 	text : "Place up to 4 Influence dubes in total on battlegrounds where the USSR player currently has Influence cubes. Max 2 per battleground",
 	side : "ussr",
@@ -4023,8 +4023,8 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['s29b']            = { 
-	img : "Strategy Card 29b.png" , 
+    deck['s29b']            = {
+	img : "Strategy Card 29b.png" ,
 	name : "Missile Trade",
 	text : "Remove up to 3 USSR Influence cubes in total from one or more battlegrounds",
 	side : "ussr",
@@ -4037,8 +4037,8 @@ console.log("SHOULD PLACE: " + player);
 	  });
 	},
     }
-    deck['s30b']            = { 
-	img : "Strategy Card 30b.png" , 
+    deck['s30b']            = {
+	img : "Strategy Card 30b.png" ,
 	name : "Fidel Castro",
 	text : "Place up to 3 Influence cubes in total on one or both Cuba battlegrounds",
 	side : "ussr",
@@ -4047,11 +4047,11 @@ console.log("SHOULD PLACE: " + player);
 	event : function(player) {
 	  thirteen_self.eventAddInfluence(player, player, ['cuba_mil','cuba_pol'], 3, 3, 0, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 	},
     }
-    deck['s31b']            = { 
-	img : "Strategy Card 31b.png" , 
+    deck['s31b']            = {
+	img : "Strategy Card 31b.png" ,
 	name : "Berlin Blockade",
 	text : "USSR gains 2 Prestige. Then US player may escalate/deflate a USSR DEFCON track by up to 2 steps",
 	side : "ussr",
@@ -4067,8 +4067,8 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['s32b']            = { 
-	img : "Strategy Card 32b.png" , 
+    deck['s32b']            = {
+	img : "Strategy Card 32b.png" ,
 	name : "Suez-Hungary",
 	text : "Keep placing 1 USSR Influence cube on the Italy battleground until the USSR runs out, reaches 5, or has one more Influence cube there than the US player",
 	side : "ussr",
@@ -4093,8 +4093,8 @@ console.log("SHOULD PLACE: " + player);
 
 	},
     }
-    deck['s33b']            = { 
-	img : "Strategy Card 33b.png" , 
+    deck['s33b']            = {
+	img : "Strategy Card 33b.png" ,
 	name : "Maskirovka",
 	text : "If USSR military DEFCON track is in the DEFCON 3 area, place up to 1 Influence cube on all military battlegrounds",
 	side : "ussr",
@@ -4113,8 +4113,8 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.endTurn();
 	},
     }
-    deck['s34b']            = { 
-	img : "Strategy Card 34b.png" , 
+    deck['s34b']            = {
+	img : "Strategy Card 34b.png" ,
 	name : "Bay of Pigs",
 	text : "Play on opponent. They EITHER remove 2 Influence cubes from the Alliances battleground OR they can't play Events to deflate their DEFCON tracks for this round",
 	side : "ussr",
@@ -4125,8 +4125,8 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.endTurn();
 	},
     }
-    deck['s35b']            = { 
-	img : "Strategy Card 35b.png" , 
+    deck['s35b']            = {
+	img : "Strategy Card 35b.png" ,
 	name : "Turn Back the Ships",
 	text : "Deflate the most escalated USSR DEFCON track by up to 2 steps (if tied, pick one)",
 	side : "ussr",
@@ -4146,11 +4146,11 @@ console.log("SHOULD PLACE: " + player);
 
 	  thirteen_self.eventDecreaseDefcon(player, player, options, 2, 2, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 	},
     }
-    deck['s36b']            = { 
-	img : "Strategy Card 36b.png" , 
+    deck['s36b']            = {
+	img : "Strategy Card 36b.png" ,
 	name : "Strategic Balance",
 	text : "Place up to 3 Influence cubes on the Atlantic battleground",
 	side : "ussr",
@@ -4160,12 +4160,12 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.updateStatus("<div class='status-message' id='status-message'>Place up to 3 Influence on the Atlantic battleground: <p></p><ul><li class='card' id='done'>click here when done</li></ul></div>");
 	  thirteen_self.eventAddInfluence(player, player, ['atlantic'], 3, 3, 1, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 
 	},
     }
-    deck['s37b']            = { 
-	img : "Strategy Card 37b.png" , 
+    deck['s37b']            = {
+	img : "Strategy Card 37b.png" ,
 	name : "National Liberation",
 	text : "Command 3 Influence cubes on to one political battleground",
 	side : "ussr",
@@ -4175,11 +4175,11 @@ console.log("SHOULD PLACE: " + player);
 	  thirteen_self.updateStatus("<div class='status-message' id='status-message'>Command 3 Influence cubes on to one political battleground: <p></p><ul><li class='card' id='done'>click here when done</li></ul></div>");
 	  thirteen_self.eventAddInfluence(player, player, ['cuba_pol','italy','turkey'], 3, 3, 1, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 	},
     }
-    deck['s38b']            = { 
-	img : "Strategy Card 38b.png" , 
+    deck['s38b']            = {
+	img : "Strategy Card 38b.png" ,
 	name : "U-2 Downed",
 	text : "Place up to 2 Influence cubes on the Turkey battleground. Remove half the US Influence cubes from one Cuba battleground (rounded up)",
 	side : "ussr",
@@ -4191,12 +4191,12 @@ console.log("SHOULD PLACE: " + player);
 	    thirteen_self.updateStatus("<div class='status-message' id='status-message'>Remove half of US influence from one Cuban battleground: <p></p><ul><li class='card' id='done'>click here when done</li></ul></div>");
 	    thirteen_self.eventRemoveInfluence(player, 2, ['cuba_pol', 'cuba_mil'], 101, 2, 0, function(args) {
   	      thirteen_self.endTurn();
-	    }); 
-	  }); 
+	    });
+	  });
 	},
     }
-    deck['s39b']            = { 
-	img : "Strategy Card 39b.png" , 
+    deck['s39b']            = {
+	img : "Strategy Card 39b.png" ,
 	name : "Defensive Missiles",
 	text : "Place up to 2 Influence cubes in total on the Television and United Nations battlegrounds",
 	side : "ussr",
@@ -4205,7 +4205,7 @@ console.log("SHOULD PLACE: " + player);
 	event : function(player) {
 	  thirteen_self.eventAddInfluence(player, player, ['un','television'], 2, 2, 1, function(args) {
 	    thirteen_self.endTurn();
-	  }); 
+	  });
 
 	},
     }
@@ -4356,6 +4356,3 @@ console.log("SHOULD PLACE: " + player);
 } // end Thirteen class
 
 module.exports = Thirteen;
-
-
-

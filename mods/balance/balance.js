@@ -16,6 +16,7 @@ class Balance extends ModTemplate {
     this.trigger_bid = 2;
     this.fully_paid_out = 0;
     this.was_the_chain_reset = 0;
+    this.alwaysRun = 1;
   }
 
 
@@ -303,7 +304,7 @@ class Balance extends ModTemplate {
             await this.app.storage.executeDatabase(sql2, params2, "balance");
 
             //
-            // propagate transaction 
+            // propagate transaction
             //
             this.app.network.propagateTransaction(newtx);
             console.log("Paying :" + address + " - " + faucet_payment);
@@ -382,7 +383,7 @@ class Balance extends ModTemplate {
 
 
   //
-  // slip object must be CLONE of actual slip, as otherwise adjusting values 
+  // slip object must be CLONE of actual slip, as otherwise adjusting values
   // breaks SPV mode
   //
   async addCloneSlipToDatabase(slip, p) {
@@ -542,5 +543,3 @@ class Balance extends ModTemplate {
 }
 
 module.exports = Balance;
-
-

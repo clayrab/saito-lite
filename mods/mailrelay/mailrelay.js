@@ -8,19 +8,17 @@ class MailRelay extends ModTemplate {
     constructor(app) {
         super(app);
 
-        this.description = "Module to relay saito email messages onto the legacy email system."
-        this.categories  = "Communications Utilities";
-
         this.name = "MailRelay";
 	this.deascription = "Adds support for integrating on-chain messages with legacy off-chain email notifications";
 	this.categories = "Core Utilities";
+      this.alwaysRun = 1;
     }
 
     onConfirmation(blk, tx, conf, app) {
     }
 
     initialize(app) {
-     //For testing only, no need to initialize module 
+     //For testing only, no need to initialize module
         super.initialize(app);
 
         // add an email
@@ -37,8 +35,8 @@ class MailRelay extends ModTemplate {
             this.sendMail(email)
         } catch(err) {
             console.log(err);
-        } 
-        
+        }
+
     }
 
     async handlePeerRequest(app, message, peer, callback) {

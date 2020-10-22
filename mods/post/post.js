@@ -19,7 +19,7 @@ class Post extends ModTemplate {
     this.icon_fa = "fa fa-map-signs";
     this.description = `Post or reply to short messages.`;
     this.categories = "Social Messaging";
-
+    this.alwaysRun = 1;
   }
 
   returnServices() {
@@ -119,27 +119,27 @@ class Post extends ModTemplate {
     let txmsg = tx.returnMessage();
 
     let sql = `
-        INSERT INTO 
+        INSERT INTO
             posts (
                 id,
                 thread_id,
-                parent_id, 
+                parent_id,
                 type,
-                author, 
-                content, 
-                post_transaction, 
+                author,
+                content,
+                post_transaction,
                 ts,
                 children,
                 deleted
-                ) 
+                )
             VALUES (
                 '${tx.transaction.sig}',
                 '${txmsg.thread_id}',
-                '${txmsg.parent_id}', 
+                '${txmsg.parent_id}',
                 '${txmsg.type}',
-                '${tx.transaction.from[0].add}', 
-                '${txmsg.content}', 
-                '${JSON.stringify(tx.transaction)}', 
+                '${tx.transaction.from[0].add}',
+                '${txmsg.content}',
+                '${JSON.stringify(tx.transaction)}',
                 ${tx.transaction.ts},
                 0,
                 0
@@ -155,7 +155,7 @@ class Post extends ModTemplate {
     let txmsg = tx.returnMessage();
 
     let sql = `
-        UPDATE 
+        UPDATE
           posts
         SET
           content = '${txmsg.content}'
@@ -169,7 +169,7 @@ class Post extends ModTemplate {
     let txmsg = tx.returnMessage();
 
     let sql = `
-        UPDATE 
+        UPDATE
           posts
         SET
           deleted = 1
@@ -183,7 +183,7 @@ class Post extends ModTemplate {
     let txmsg = tx.returnMessage();
 
     let sql = `
-        UPDATE 
+        UPDATE
           posts
         SET
           ts = ${tx.transaction.ts}
@@ -197,7 +197,7 @@ class Post extends ModTemplate {
     let txmsg = tx.returnMessage();
 
     let sql = `
-        UPDATE 
+        UPDATE
           posts
         SET
           children = children + 1
@@ -211,7 +211,7 @@ class Post extends ModTemplate {
     let txmsg = tx.returnMessage();
 
     let sql = `
-        UPDATE 
+        UPDATE
           posts
         SET
           children = children - 1
@@ -225,4 +225,3 @@ class Post extends ModTemplate {
 
 }
 module.exports = Post
-

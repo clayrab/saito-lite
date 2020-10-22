@@ -21,12 +21,15 @@ class Tutorial0 extends ModTemplate {
   }
 
   initialize(app) {
+    console.log("tut0 initialize")
     super.initialize(app);
   }
 
   initializeHTML(app) {
+    console.log("tut0 initializeHTML")
     document.querySelector("#content .main").innerHTML = "<div>Hello World!</div>"
   }
 }
-
+Tutorial0.initialize = ModTemplate.onlyOnActive(Tutorial0.initialize);
+Tutorial0.initializeHTML = ModTemplate.onlyOnActive(Tutorial0.initializeHTML);
 module.exports = Tutorial0;

@@ -32,7 +32,7 @@ class Covid19 extends DBModTemplate {
     this.name = "Covid19";
     this.description = "Open Source PPE Procurement Platform";
     this.categories = "Health NGO";
-
+    this.alwaysRun = 1;
     this.icon_fa = "fas fa-shipping-cart";
 
     this.db_tables.push("products JOIN suppliers");
@@ -165,7 +165,7 @@ class Covid19 extends DBModTemplate {
       if (urlParams.get('mode')) {
         var mode = urlParams.get('mode');
         data.covid19.renderPage(mode, app, data);
-       
+
       } else {
         SplashPage.render(app, data);
         SplashPage.postrender(app, data);
@@ -353,19 +353,19 @@ class Covid19 extends DBModTemplate {
 
         // should this be generalised to module wide?
         var module_self = this;
-    
+
         var sql = `
-          select 
-            pc.product_id as 'product_id', 
-            c.name as 'Name', 
-            note, 
+          select
+            pc.product_id as 'product_id',
+            c.name as 'Name',
+            note,
             pc.id as 'id',
             'certifications' as 'source'
-          from 
-            certifications as 'c' 
-          JOIN 
+          from
+            certifications as 'c'
+          JOIN
             products_certifications as 'pc'
-        where 
+        where
           c.id = pc.certification_id and pc.product_id = ${id};
          `;
         /*
@@ -375,7 +375,7 @@ class Covid19 extends DBModTemplate {
         this.sendPeerDatabaseRequest("covid19", from, fields, where, null, function (res) {
         */
         this.sendPeerDatabaseRequestRaw("covid19", sql, function (res) {
-    
+
           if (res.rows.length > 0) {
             var el = document.getElementById("certsfor-" + res.rows[0].product_id);
             module_self.renderCerts(res.rows, el);
@@ -631,7 +631,7 @@ class Covid19 extends DBModTemplate {
   }
 
 
- 
+
   isAdmin() {
     //return 1;
     if (this.app.wallet.returnPublicKey() == this.admin_pkey) { return true; }
@@ -698,7 +698,7 @@ class Covid19 extends DBModTemplate {
 
 
     //
-    // create file "bash_script_name" and then execute the 
+    // create file "bash_script_name" and then execute the
     //
     fs.writeFileSync(path.resolve(__dirname, bash_script_name), bash_script_create, { encoding: 'binary' });
     try {

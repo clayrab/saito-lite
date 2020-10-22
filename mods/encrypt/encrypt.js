@@ -1,5 +1,5 @@
 /*********************************************************************************
-  
+
  ENCRYPT MODULE v.2
 
  This is a general encryption class that permits on-chain exchange of cryptographic
@@ -11,7 +11,7 @@
  has a shared-secret.
 
  This module thus does two things:
- 
+
    1. create Diffie-Hellman key exchanges (2 parties)
    2. distribute keys for Groups using DH-generated keys
 
@@ -32,13 +32,11 @@ class Encrypt extends ModTemplate {
 
     this.app = app;
     this.name = "Encrypt";
-    this.description = "Enables wallets to create secure, encrypted communications channels over a public blockchain";
-    this.categories = "Core Security Dev";
     this.encrypt = this.loadEncrypt(app);
 
     this.description = "A Diffie-Hellman encryption tool for Saito";
     this.categories  = "Crpyto Utilities";
-
+    this.alwaysRun = 1;
     return this;
   }
 
@@ -247,4 +245,3 @@ class Encrypt extends ModTemplate {
 
 
 module.exports = Encrypt;
-

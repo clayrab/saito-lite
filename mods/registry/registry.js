@@ -23,7 +23,7 @@ class Registry extends ModTemplate {
 
     this.description = "A naming service for Saito Addresses";
     this.categories  = "Utilities Communications";
-
+    this.alwaysRun = 1;
     return this;
   }
 
@@ -189,24 +189,24 @@ class Registry extends ModTemplate {
   async addRecord(identifier="", publickey="", unixtime=0, bid=0, bsh="", lock_block=0, sig="", signer="", lc=1) {
 
     let sql = `INSERT INTO records (
-        identifier, 
-        publickey, 
-        unixtime, 
-        bid, 
-        bsh, 
-        lock_block, 
+        identifier,
+        publickey,
+        unixtime,
+        bid,
+        bsh,
+        lock_block,
         sig,
-        signer, 
+        signer,
         lc
       ) VALUES (
-        $identifier, 
+        $identifier,
         $publickey,
-        $unixtime, 
-        $bid, 
-        $bsh, 
-        $lock_block, 
-        $sig, 
-        $signer, 
+        $unixtime,
+        $bid,
+        $bsh,
+        $lock_block,
+        $sig,
+        $signer,
         $lc
       )`;
     let params = {
@@ -274,7 +274,7 @@ console.log("\n\n\nRES: " + JSON.stringify(rows));
     newtx.msg.title    = "Address Registration Success!";
 
     newtx = this.app.wallet.signTransaction(tx);
-    this.app.network.propagateTransaction(newtx); 
+    this.app.network.propagateTransaction(newtx);
 
   }
 
@@ -296,7 +296,7 @@ console.log("\n\n\nRES: " + JSON.stringify(rows));
     newtx.msg.title    = "Address Registration Success!";
 
     newtx = this.app.wallet.signTransaction(tx);
-    this.app.network.propagateTransaction(newtx); 
+    this.app.network.propagateTransaction(newtx);
 
   }
 
@@ -305,5 +305,3 @@ console.log("\n\n\nRES: " + JSON.stringify(rows));
 
 }
 module.exports = Registry;
-
-

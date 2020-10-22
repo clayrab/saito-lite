@@ -15,7 +15,7 @@ class Appointments extends ModTemplate {
 
     this.description = "Appointment booking helper module.";
     this.categories  = "Admin Productivity Utilities";
-
+    this.alwaysRun = 1;
     return this;
 
   }
@@ -70,7 +70,7 @@ class Appointments extends ModTemplate {
 
     });
   }
-  
+
 
 
 
@@ -82,5 +82,3 @@ class Appointments extends ModTemplate {
 }
 
 module.exports = Appointments;
-
-

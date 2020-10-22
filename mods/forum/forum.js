@@ -49,7 +49,7 @@ class Forum extends ModTemplate {
     this.view_forum = "main";
     this.view_post_id = "";
     this.view_offset = 0;
-
+    this.alwaysRun = 1;
     this.addrController = new AddressController(app);
 
   }
@@ -439,7 +439,7 @@ class Forum extends ModTemplate {
 
       forum_self.sendPeerDatabaseRequestWithFilter(
 
-	"Forum" , 
+	"Forum" ,
 
 	`SELECT * FROM posts WHERE ${where}` ,
 
@@ -1031,6 +1031,3 @@ if (post_ids.length > 0) {
 
 }
 module.exports = Forum;
-
-
-

@@ -40,8 +40,6 @@ class TutorialWallet extends ModTemplate {
 // showAlert()
 //
 
-  // Called in Saito.init:
-  //  let x = new Module(this);
   constructor(app) {
     console.log("tutWallet constructor")
     //console.log("caller is " + arguments.callee.caller.toString());
@@ -55,11 +53,18 @@ class TutorialWallet extends ModTemplate {
     this.description     = "A Basic Wallet to demonstrate the basic Saito Module APIs";
     this.categories      = "Tutorials";
     this.balance         = null;
+
+    this.initialize = ModTemplate.onlyOnActive(this.initialize);
+    this.respondTo = ModTemplate.onlyOnActive(this.respondTo);
+    this.updateBalance = ModTemplate.onlyOnActive(this.updateBalance);
+
+    console.log(Object.getOwnPropertyNames(TutorialWallet.prototype));
+
     return this;
   }
 
   onConfirmation(blk, tx, conf, app) {
-    console.log("tutWallet onConfirmation")
+    console.log("****** tutorial wallet onConfirmation")
     // let txmsg = tx.returnMessage();
     // if (conf == 0) {
     //   if (txmsg.request == "chat message") {
@@ -71,23 +76,23 @@ class TutorialWallet extends ModTemplate {
   }
 
   initialize(app) {
-    console.log("tutWallet initialize");
+    console.log("****** tutorial wallet initialize");
     super.initialize(app);
     this.balance = app.wallet.returnBalance();
   }
 
   respondTo(type) {
-    console.log("tutWallet respondTo");
+    console.log("****** tutorial wallet respondTo");
     return null;
   }
 
   initializeHTML(app) {
-    console.log("tutWallet initializeHTML");
+    console.log("****** tutorial wallet initializeHTML");
     this.render(app);
   }
 
   render(app) {
-    console.log("tutwallet render")
+    console.log("****** tutorial wallet render")
     let html = "<div id='helloworld'>Hello World!</div>";
     if(this.balance) {
       html += "<div>" + this.balance + "</div>";
@@ -103,8 +108,11 @@ class TutorialWallet extends ModTemplate {
   }
 
   updateBalance(app) {
-    console.log("update balance...")
-    if(app.BROWSER) {
+    console.log("tutorial wallet update balance...")
+    console.log(this.browser_active)
+    if(this.browser_active == 1) {
+      console.log("tutorial wallet wtf...")
+      console.log(this.browser_active)
       this.balance = app.wallet.returnBalance();
       this.render(app);
     }

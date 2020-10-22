@@ -26,7 +26,7 @@ class QRScanner extends ModTemplate {
     this.name = "QRScanner";
     this.description = "Adds QRCode scanning functionality to Saito";
     this.categories = "Core";
-
+    this.alwaysRun = 1;
     this.video = null;
     this.canvas = null;
     this.canvas_context = null;
@@ -228,7 +228,7 @@ class QRScanner extends ModTemplate {
   }
 
   //
-  // worker passes back a message either containing decoded data, 
+  // worker passes back a message either containing decoded data,
   // or it attempts t
   //
   onDecoderMessage(msg) {

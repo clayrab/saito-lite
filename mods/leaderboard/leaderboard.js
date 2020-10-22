@@ -16,6 +16,7 @@ class Leaderboard extends ModTemplate {
     this.name = "Leaderboard";
     this.description = "Objective ranking of player-skill based on public gaming information";
     this.categories = "Games Entertainment";
+    this.alwaysRun = 1;
     this.affix_callbacks_to = [];
 
     this.rankings = {};
@@ -165,9 +166,9 @@ class Leaderboard extends ModTemplate {
         console.log('+++ LEADRBRD +++' + tx.transaction.sig);
         console.log('+++++++++++++++++++++++++++++++++++++++');
 
-        if (txmsg.winner === "") { 
+        if (txmsg.winner === "") {
 console.log("NO WINNER PROVIDED -- OUT!");
-	  return; 
+	  return;
 	} // tie game
 
         winner.publickey = txmsg.winner;
@@ -226,7 +227,7 @@ console.log(" ... update ranking");
       }
     }
 
-    //update rankngs 
+    //update rankngs
     var wr = winner.ranking;
     var lr = loser.ranking;
 
@@ -340,5 +341,3 @@ console.log(" ... update ranking");
 }
 
 module.exports = Leaderboard;
-
-

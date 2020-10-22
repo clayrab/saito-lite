@@ -18,7 +18,7 @@ class Roles extends ModTemplate {
 
     this.description = "Simple user identity and role management system for Saito";
     this.categories  = "Admin Users";
-
+    this.alwaysRun = 1;
 
     return this;
 
@@ -86,5 +86,3 @@ console.log("ADDING EMAIL TO ONCONFIRMATION!");
 
 
 module.exports = Roles;
-
-

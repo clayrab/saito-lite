@@ -16,7 +16,7 @@ class Rewards extends ModTemplate {
     this.name = "Rewards";
     this.description = "Quick reference for earning Saito tokens from the Saito faucet.";
     this.categories = "Core Utilities Finance";
-
+    this.alwaysRun = 1;
     this.initial = 10;
     this.payoutRatio = 0.75;
     this.rewards_publickey = "24HtnCdWRQSrSXj6yuk5e6Q6sDTWGojRcMUg9kmunt3an";

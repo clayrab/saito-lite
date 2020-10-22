@@ -30,7 +30,7 @@ class Chessgame extends GameTemplate {
     this.type       = "Classic Boardgame";
     this.description = "An implimentation of Chess for the Saito Blockchain";
     this.categories  = "Boardgame Game";
-
+    this.alwaysRun = 1;
     return this;
 
   }
@@ -196,7 +196,7 @@ class Chessgame extends GameTemplate {
     this.saveGame(this.game.id);
 
     return 0;
-   
+
   }
 
   endTurn(data) {
@@ -212,7 +212,7 @@ class Chessgame extends GameTemplate {
     this.sendMessage("game", extra);
     this.updateLog(data.move, 999);
     this.updateStatusMessage();
-    
+
   }
 
   attachEvents() {
@@ -599,4 +599,3 @@ class Chessgame extends GameTemplate {
 }
 
 module.exports = Chessgame;
-
