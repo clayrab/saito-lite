@@ -92,60 +92,6 @@ class Tutorial1 extends ModTemplate {
     console.log("Tutorial1 installModule")
   }
 
-  // loadFromArchives(app, tx) {
-  //   console.log("Tutorial1 loadFromArchives")
-  // }
-  // implementsKeys(request) {
-  //   console.log("Tutorial1 implementsKeys")
-  // }
-  // onNewBlock(blk, lc) {
-  //   console.log("Tutorial1 onNewBlock")
-  // }
-  // onChainReorganization(block_id, block_hash, lc, pos) {
-  //   console.log("Tutorial1 onChainReorganization")
-  // }
-  // onConnectionUnstable(app) {
-  //   console.log("Tutorial1 onConnectionUnstable")
-  // }
-  // onConnectionStable(app) {
-  //   console.log("Tutorial1 onConnectionStable")
-  // }
-  // onWalletReset() {
-  //   console.log("Tutorial1 onWalletReset")
-  // }
-  // onPeerHandshakeComplete(app, peer) {
-  //   console.log("Tutorial1 onPeerHandshakeComplete")
-  // }
-  // onConnectionStable(app, peer) {
-  //   console.log("Tutorial1 onConnectionStable")
-  // }
-  // onConnectionUnstable(app, peer) {
-  //   console.log("Tutorial1 onConnectionUnstable")
-  // }
-  // shouldAffixCallbackToModule(modname) {
-  //   console.log("Tutorial1 shouldAffixCallbackToModule")
-  // }
-  // // webServer(app, expressapp, express) {
-  // //   console.log("Tutorial1 webServer")
-  // // }
-  // updateIdentifier(app) {
-  //   console.log("Tutorial1 updateIdentifier")
-  // }
-  // updateBlockchainSync(app, current, target) {
-  //   console.log("Tutorial1 updateBlockchainSync")
-  // }
-  // receiveEvent(eventname, data) {
-  //   console.log("Tutorial1 receiveEvent")
-  // }
-  // sendEvent(eventname, data) {
-  //   console.log("Tutorial1 sendEvent")
-  // }
-
-
-
 }
 
-Tutorial1.initialize = ModTemplate.onlyOnActive(Tutorial1.initialize);
-Tutorial1.respondTo = ModTemplate.onlyOnActive(Tutorial1.respondTo);
-Tutorial1.updateBalance = ModTemplate.onlyOnActive(Tutorial1.updateBalance);
 module.exports = Tutorial1;

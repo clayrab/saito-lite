@@ -42,8 +42,6 @@ class TutorialWallet extends ModTemplate {
 
   constructor(app) {
     console.log("tutWallet constructor")
-    //console.log("caller is " + arguments.callee.caller.toString());
-    //console.log(printStackTrace().join('\n\n'));
     super(app);
 
     // This name will form the "slug" in the url of your module. If
@@ -54,11 +52,8 @@ class TutorialWallet extends ModTemplate {
     this.categories      = "Tutorials";
     this.balance         = null;
 
-    this.initialize = ModTemplate.onlyOnActive(this.initialize);
-    this.respondTo = ModTemplate.onlyOnActive(this.respondTo);
-    this.updateBalance = ModTemplate.onlyOnActive(this.updateBalance);
-
-    console.log(Object.getOwnPropertyNames(TutorialWallet.prototype));
+    // Will cause initialize to always be run
+    this.alwaysRunThese = [this.initialize];
 
     return this;
   }
